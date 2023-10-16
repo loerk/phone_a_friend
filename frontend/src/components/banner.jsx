@@ -5,7 +5,7 @@ import { usePassageUserInfo } from '../hooks';
 
 function Banner() {
   const { userInfo } = usePassageUserInfo();
-  console.log(userInfo);
+
   return (
     <div className={styles.mainHeader}>
       <div className={styles.headerText}>Phone A Friend</div>
