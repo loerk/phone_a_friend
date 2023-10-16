@@ -4,18 +4,20 @@ const cors = require('cors');
 const users = require('./api/routes/users-route');
 const app = express();
 
-// const CLIENT_URL = 'http://localhost:3000';
 
-require("dotenv").config();
+
+require('dotenv').config();
 
 app.use(express.json());
 app.use(cors());
 
+
 const passage = new Passage({
   appID: process.env.PASSAGE_APP_ID,
   apiKey: process.env.PASSAGE_API_KEY,
-  authStrategy: "HEADER",
+  authStrategy: 'HEADER'
 });
+
 
 app.use('/api/users', users);
 
@@ -30,15 +32,15 @@ app.post('/auth', async (req, res) => {
       const identifier = email ? email : phone;
 
       res.json({
-        authStatus: "success",
-        identifier,
+        authStatus: 'success',
+        identifier
       });
     }
   } catch (e) {
     // authentication failed
     console.log(e);
     res.json({
-      authStatus: "failure",
+      authStatus: 'failure'
     });
   }
 });
