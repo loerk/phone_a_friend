@@ -2,8 +2,10 @@ import styles from '../styles/Dashboard.module.css';
 import { PassageAuthGuard } from '@passageidentity/passage-react';
 import { usePassageUserInfo } from '../hooks/';
 import LogoutButton from '../components/LogoutButton';
-import { BrowserRouter, Routes, Route, Outlet, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import FriendGroup from './FriendGroup';
+import Calendar from './Calendar';
+
 
 function Dashboard() {
   const { userInfo, loading } = usePassageUserInfo();
@@ -28,22 +30,22 @@ function Dashboard() {
       }
     >
       <div className={styles.dashboard}>
-      <span class="material-symbols-outlined">
+      <span className="material-symbols-outlined">
         account_circle
       </span>
         <div className={styles.title}>Welcome</div>
         <p>to</p>
         <div className={styles.title}>Phone a Friend!</div>
         <div>
-          <span class="material-symbols-outlined" >
-            group
-          </span>
-          <span class="material-symbols-outlined">
-            add_call
-          </span>
-          <span class="material-symbols-outlined">
-            calendar_add_on
-          </span>
+          <Link to="/friendgroup">
+            <img src="../images/group.png"></img>
+          </Link>
+          <Link to="/friendgroup">
+            <img src="../images/add_call.png"></img>
+          </Link>
+          <Link to="/calendar">
+            <img src="../images/calendar.png"></img>
+          </Link>
         </div>
         <br />
         <div className={styles.message}>
@@ -51,7 +53,13 @@ function Dashboard() {
         </div>
         <LogoutButton />
         
+        <Routes>
+          <Route path='friendgroup' element={<FriendGroup />} />
+          <Route path='calendar' element={<Calendar />} />
+        </Routes>
+      
       </div>
+      
     </PassageAuthGuard>
   );
 }
