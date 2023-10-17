@@ -5,13 +5,13 @@ export default function FriendGroup() {
 
   return (
 
-      <div>
-        
-        <div>Your Friend Group</div>
+    <div>
+      
+      <div>Your Friend Group</div>
 
-       
-        
-      </div>
+      
+      
+    </div>
     
   )
 }
