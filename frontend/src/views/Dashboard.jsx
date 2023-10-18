@@ -2,6 +2,7 @@ import styles from '../styles/Dashboard.module.css';
 import { PassageAuthGuard } from '@passageidentity/passage-react';
 import { usePassageUserInfo } from '../hooks';
 import { RegistrationForm } from '../components/Registration/RegistrationForm';
+import { Link } from 'react-router-dom';
 
 function Dashboard() {
   const { userInfo, loading } = usePassageUserInfo();
@@ -21,7 +22,7 @@ function Dashboard() {
             <div className={styles.dashboard}>
               <div className={styles.title}>you must be logged in</div>
               <div className={styles.message}>
-                <a href="/">Login</a>
+                <Link to="/"> Login </Link>
               </div>
             </div>
           }
