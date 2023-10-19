@@ -1,6 +1,7 @@
 {
   "scripts": {
     "bootstrap": "cd ./backend && npm install && cd ../frontend && npm install",
+    "start-livekit-server": "livekit-server --dev",
     "start-frontend": "cd ./frontend && npm run start",
     "start-backend": "cd ./backend && npm run start",
     "start": "cd ./frontend && npm run start & cd ./backend && npm run start"

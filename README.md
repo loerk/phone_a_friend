@@ -33,11 +33,30 @@ To run this application, follow the instructions below to install and start the 
 1. Rename the EXAMPLE.env file to .env for both the frontend and backend directories
 2. Replace the example variables for each .env file with your own Passage App ID and API Key. You can get these from the [Passage Console](https://console.passage.id).
 
+## Run a local livekit server
+This project uses livekit to handle calls. For development a livekit server can be run locally via the steps below.
+
+The livekit server requires that livekit be installed locally. If you do not have livekit installed you can install it on MacOS by running
+```bash
+brew install livekit
+```
+Once livekit is installed you can run a local server by running the below command. The server will be accessible to the client at the websocket url ws://localhost:7880
+
+```bash
+npm run start-livekit-server
+```
+The server will be accessible at the websocket url ws://localhost:7880. The server can now be connected to with the dev API key and secret below.
+```bash
+API key: devkey
+API secret: secret
+```
+
 ## Install Dependencies & Run Backend/Frontend
 
 ```bash
 npm run bootstrap
 ```
+
 
 Start the express server
 
