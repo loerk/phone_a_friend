@@ -40,7 +40,7 @@ The livekit server requires that livekit be installed locally. If you do not hav
 ```bash
 brew install livekit
 ```
-Once livekit is installed you can run a local server by running the below command. The server will be accessible to the client at the websocket url ws://localhost:7880
+Once livekit is installed you can run a local server by running the below command.
 
 ```bash
 npm run start-livekit-server
