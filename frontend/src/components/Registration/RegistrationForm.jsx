@@ -2,79 +2,56 @@ import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { usePassageUserInfo } from '../../hooks';
 
-import * as yup from 'yup';
 import { RegistrationField } from './RegistrationField';
+import { fetchData } from '../../api/fetcher';
 
 export const RegistrationForm = () => {
   const [data, setData] = useState(null);
-
-  function registerUser() {
-    console.log('passageUserInfo', passageUserInfo);
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:7001/api/users');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(
-      JSON.stringify({
-        email: passageUserInfo?.email | 'test@gmail.com',
-        phoneNumber: passageUserInfo?.phone | '8006008000'
-      })
-    );
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        setData(JSON.parse(xhr.responseText));
-      }
-    };
-  }
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
-  const validationSchema = yup.object().shape({
-    email: yup.string().email().required(),
-    phoneNumber: yup.number().nullable().required('please enter a phonenumber')
-  });
-
-  const initialFormikValues = {
-    email: passageUserInfo?.email || '',
-    phoneNumber: passageUserInfo?.phone || '',
-    id: passageUserInfo?.id
+  const registerUser = async (userData) => {
+    const injectedUserData = { ...userData, id: passageUserInfo.id, email: passageUserInfo.email };
+    setLoading(true);
+    try {
+      const result = await fetchData('/api/users', 'POST', injectedUserData);
+      if (typeof result !== 'string') {
+        console.log({ result });
+        setData(result);
+      } else {
+        throw new Error('Registration Error');
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <Formik
-      initialValues={initialFormikValues}
-      validationSchema={validationSchema}
-      onSubmit={(values, action) => {
-        // not working
-        console.log('values ', values);
-        console.log('action ', action);
-        console.log('submit!');
+      initialValues={{ username: '', phoneNumber: '', email: '', dob: '', id: '' }}
+      onSubmit={(values) => {
+        registerUser(values);
+        //route away
       }}
     >
-        <Form style={{ display: 'flex', flexDirection: 'column' }}>
-          {!passageUserInfo?.email && <RegistrationField type={'email'} label={'Email'} />}
-          <RegistrationField type={'phoneNumber'} label={'Phonenumber'} />
-          <RegistrationField type={'dob'} label={'Date of birth'} />
-
-        {data ? (
-          <>
-            <br></br>
-            <div>{JSON.stringify(data)}</div>
-          </>
-        ) : (
-          <>
-            <br></br>
-            <div>this label should change when you click Register</div>
-          </>
-        )}
-
-        <button
-          style={{ padding: '0.5rem', marginTop: '2rem' }}
-          onClick={registerUser}
-          type="button"
-        >
+      <Form style={{ display: 'flex', flexDirection: 'column' }}>
+        {!passageUserInfo?.email && <RegistrationField type={'email'} label={'Email'} />}
+        <RegistrationField type={'username'} label={'Name'} />
+        <RegistrationField type={'phoneNumber'} label={'Phone'} />
+        <RegistrationField type={'dob'} label={'Date of birth'} />
+        <div style={{ paddingTop: '1rem', overflow: 'hidden', lineBreak: 'anywhere' }}>
+          {data && <p>{JSON.stringify(data)}</p>}
+          {loading && <p>loading...</p>}
+          {error && <div>{JSON.stringify(error)}</div>}
+        </div>
+        <button style={{ padding: '0.5rem', marginTop: '1rem' }} type="submit">
           Register
-          </button>
-        </Form>
+        </button>
+      </Form>
     </Formik>
   );
 };
