@@ -26,7 +26,7 @@ router.route('/roomtoken/:userId/:roomId').get((req, res) => {
 });
 
 router.route('/roomid/:participants').get((req, res) => {
-  res.send(createRoomId(JSON.parse(req.params.participants));
+  res.send(createRoomId(JSON.parse(req.params.participants)));
 });
 
 module.exports = router;
