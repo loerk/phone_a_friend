@@ -43,23 +43,14 @@ export const RegistrationForm = () => {
         <RegistrationField type={'username'} label={'Name'} />
         <RegistrationField type={'phoneNumber'} label={'Phone'} />
         <RegistrationField type={'dob'} label={'Date of birth'} />
-
-        <button style={{ padding: '0.5rem', marginTop: '2rem' }} type="submit">
+        <div style={{ paddingTop: '1rem', overflow: 'hidden', lineBreak: 'anywhere' }}>
+          {data && <p>{JSON.stringify(data)}</p>}
+          {loading && <p>loading...</p>}
+          {error && <div>{JSON.stringify(error)}</div>}
+        </div>
+        <button style={{ padding: '0.5rem', marginTop: '1rem' }} type="submit">
           Register
         </button>
-        {data ? (
-          <>
-            <br></br>
-            <div>{JSON.stringify(data)}</div>
-          </>
-        ) : (
-          <>
-            <br></br>
-            {loading && <p>loading...</p>}
-            {error && <div>{JSON.stringify(error)}</div>}
-            <div>this label should change when you click Register</div>
-          </>
-        )}
       </Form>
     </Formik>
   );
