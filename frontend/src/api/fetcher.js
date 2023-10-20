@@ -24,11 +24,12 @@ export const fetchData = async (path, method, data) => {
     method: method,
     headers: getHeaders
   };
-  const response = await fetch(
-    url,
-    method === 'GET' || method === 'DELETE' ? getOptions : postOptions
-  );
+
   try {
+    const response = await fetch(
+      url,
+      method === 'GET' || method === 'DELETE' ? getOptions : postOptions
+    );
     if (response.ok) {
       const data = response.json();
       return data;
