@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { usePassageUserInfo } from '../../hooks';
 
@@ -6,19 +6,35 @@ import * as yup from 'yup';
 import { RegistrationField } from './RegistrationField';
 
 export const RegistrationForm = () => {
+  const [data, setData] = useState(null);
+
+  function registerUser() {
+    console.log('passageUserInfo', passageUserInfo);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:7001/api/users');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(
+      JSON.stringify({
+        email: passageUserInfo?.email | 'test@gmail.com',
+        phoneNumber: passageUserInfo?.phone | '8006008000'
+      })
+    );
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        setData(JSON.parse(xhr.responseText));
+      }
+    };
+  }
+
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
   const validationSchema = yup.object().shape({
     email: yup.string().email().required(),
-    username: yup.string().required('please enter a username'),
-    phoneNumber: yup.number().nullable().required('please enter a phonenumber'),
-    dob: yup.date().required('please enter a date of birth')
+    phoneNumber: yup.number().nullable().required('please enter a phonenumber')
   });
 
   const initialFormikValues = {
-    username: '',
     email: passageUserInfo?.email || '',
-    dob: '',
     phoneNumber: passageUserInfo?.phone || '',
     id: passageUserInfo?.id
   };
@@ -27,27 +43,38 @@ export const RegistrationForm = () => {
     <Formik
       initialValues={initialFormikValues}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        // createUser(values)
-        setSubmitting(false);
+      onSubmit={(values, action) => {
+        // not working
+        console.log('values ', values);
+        console.log('action ', action);
+        console.log('submit!');
       }}
     >
-      {({ isSubmitting }) => (
         <Form style={{ display: 'flex', flexDirection: 'column' }}>
           {!passageUserInfo?.email && <RegistrationField type={'email'} label={'Email'} />}
-          <RegistrationField type={'username'} label={'Username'} />
           <RegistrationField type={'phoneNumber'} label={'Phonenumber'} />
           <RegistrationField type={'dob'} label={'Date of birth'} />
 
-          <button
-            style={{ padding: '0.5rem', marginTop: '2rem' }}
-            type="submit"
-            disabled={isSubmitting}
-          >
-            Get Started
+        {data ? (
+          <>
+            <br></br>
+            <div>{JSON.stringify(data)}</div>
+          </>
+        ) : (
+          <>
+            <br></br>
+            <div>this label should change when you click Register</div>
+          </>
+        )}
+
+        <button
+          style={{ padding: '0.5rem', marginTop: '2rem' }}
+          onClick={registerUser}
+          type="button"
+        >
+          Register
           </button>
         </Form>
-      )}
     </Formik>
   );
 };
