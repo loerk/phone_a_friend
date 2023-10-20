@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { usePassageUserInfo } from '../../hooks';
 
@@ -6,6 +6,18 @@ import * as yup from 'yup';
 import { RegistrationField } from './RegistrationField';
 
 export const RegistrationForm = () => {
+  const [data, setData] = useState(null);
+
+  function handleClick() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:7001/api/users');
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        setData(JSON.parse(xhr.responseText));
+      }
+    };
+    xhr.send();
+  }
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
   const validationSchema = yup.object().shape({
@@ -36,7 +48,8 @@ export const RegistrationForm = () => {
           {!passageUserInfo?.email && <RegistrationField type={'email'} label={'Email'} />}
           <RegistrationField type={'phoneNumber'} label={'Phonenumber'} />
           <RegistrationField type={'dob'} label={'Date of birth'} />
-
+        <button onClick={handleClick}>Get Data</button>
+        {data ? <div>{JSON.stringify(data)}</div> : <div>Loading...</div>}
         <button style={{ padding: '0.5rem', marginTop: '2rem' }} type="submit">
             Get Started
           </button>
