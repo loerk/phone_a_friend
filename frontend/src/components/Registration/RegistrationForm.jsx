@@ -10,13 +10,11 @@ export const RegistrationForm = () => {
 
   const validationSchema = yup.object().shape({
     email: yup.string().email().required(),
-    username: yup.string().required('please enter a username'),
     phoneNumber: yup.number().nullable().required('please enter a phonenumber'),
     dob: yup.date().required('please enter a date of birth')
   });
 
   const initialFormikValues = {
-    username: '',
     email: passageUserInfo?.email || '',
     dob: '',
     phoneNumber: passageUserInfo?.phone || '',
@@ -27,27 +25,22 @@ export const RegistrationForm = () => {
     <Formik
       initialValues={initialFormikValues}
       validationSchema={validationSchema}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(values, action) => {
         // createUser(values)
-        setSubmitting(false);
+        console.log('values ' + values);
+        console.log('action ', action);
+        console.log('submit!');
       }}
     >
-      {({ isSubmitting }) => (
         <Form style={{ display: 'flex', flexDirection: 'column' }}>
           {!passageUserInfo?.email && <RegistrationField type={'email'} label={'Email'} />}
-          <RegistrationField type={'username'} label={'Username'} />
           <RegistrationField type={'phoneNumber'} label={'Phonenumber'} />
           <RegistrationField type={'dob'} label={'Date of birth'} />
 
-          <button
-            style={{ padding: '0.5rem', marginTop: '2rem' }}
-            type="submit"
-            disabled={isSubmitting}
-          >
+        <button style={{ padding: '0.5rem', marginTop: '2rem' }} type="submit">
             Get Started
           </button>
         </Form>
-      )}
     </Formik>
   );
 };
