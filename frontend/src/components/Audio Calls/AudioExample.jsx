@@ -2,6 +2,7 @@ import React from 'react';
 const { AudioConference, LiveKitRoom, useToken } = require('@livekit/components-react');
 
 export const AudioExample = () => {
+  console.log("I'm here in audio example hooray");
   const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
   const roomName = params?.get('room') ?? 'test-room';
   const userIdentity = params?.get('user') ?? 'test-identity';
