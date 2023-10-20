@@ -1,18 +1,12 @@
 import React from 'react';
-const { AudioConference, LiveKitRoom, useToken } = require('@livekit/components-react');
+
+const { AudioConference, LiveKitRoom } = require('@livekit/components-react');
 
 export const AudioExample = () => {
-  console.log("I'm here in audio example hooray");
-  const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
-  const roomName = params?.get('room') ?? 'test-room';
-  const userIdentity = params?.get('user') ?? 'test-identity';
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2aWRlbyI6eyJyb29tSm9pbiI6dHJ1ZSwicm9vbSI6InF1aWNrc3RhcnQtcm9vbSJ9LCJpYXQiOjE2OTc4MzIyNTYsIm5iZiI6MTY5NzgzMjI1NiwiZXhwIjoxNjk3ODUzODU2LCJpc3MiOiJkZXZrZXkiLCJzdWIiOiJxdWlja3N0YXJ0LXVzZXJuYW1lIiwianRpIjoicXVpY2tzdGFydC11c2VybmFtZSJ9.nITclXOuhrbAp8WcT3oiMBS8aED8rNAjEGRsMuYv2dY';
 
-  const token = useToken(process.env.NEXT_PUBLIC_LK_TOKEN_ENDPOINT, roomName, {
-    userInfo: {
-      identity: userIdentity,
-      name: userIdentity
-    }
-  });
+  console.log('token here ', token);
 
   return (
     <div data-lk-theme="default">
