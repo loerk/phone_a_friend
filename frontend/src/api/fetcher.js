@@ -13,14 +13,12 @@ export const fetchData = async (path, method, data) => {
   };
 
   const postOptions = {
-    credentials: 'include',
     method: method,
     headers: postHeaders,
     body: JSON.stringify(data)
   };
 
   const getOptions = {
-    credentials: 'include',
     method: method,
     headers: getHeaders
   };
