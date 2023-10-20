@@ -2,7 +2,7 @@ const express = require('express');
 const Passage = require('@passageidentity/passage-node');
 const cors = require('cors');
 const users = require('./api/routes/users-route');
-const livekit = require('./api/routes/livekit-route');
+const room = require('./api/routes/room-route');
 const app = express();
 
 
@@ -21,7 +21,7 @@ const passage = new Passage({
 
 
 app.use('/api/users', users);
-app.use('/api/livekit', livekit);
+app.use('/api/room', room);
 
 app.use('*', (req, res) => res.send(`<h2>Route not handled ${req.baseUrl}</h2>`));
 
