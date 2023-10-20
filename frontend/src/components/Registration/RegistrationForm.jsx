@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { usePassageUserInfo } from '../../hooks';
 
-import * as yup from 'yup';
 import { RegistrationField } from './RegistrationField';
 import { fetchData } from '../../api/fetcher';
 
@@ -10,32 +9,16 @@ export const RegistrationForm = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [registrationData, setRegistrationData] = useState({
-    username: '',
-    email: '',
-    phoneNumber: '',
-    dob: '',
-    id: ''
-  });
 
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
-  useEffect(() => {
-    if (passageUserInfo) {
-      setRegistrationData({
-        ...registrationData,
-        email: passageUserInfo?.email,
-        phoneNumber: passageUserInfo?.phone,
-        id: passageUserInfo.id
-      });
-    }
-  }, [passageUserInfo]);
-
-  const registerUser = async () => {
+  const registerUser = async (userData) => {
+    const injectedUserData = { ...userData, id: passageUserInfo.id, email: passageUserInfo.email };
     setLoading(true);
     try {
-      const result = await fetchData('/api/users', 'POST', passageUserInfo);
+      const result = await fetchData('/api/users', 'POST', injectedUserData);
       if (typeof result !== 'string') {
+        console.log({ result });
         setData(result);
       } else {
         throw new Error('Registration Error');
@@ -47,23 +30,12 @@ export const RegistrationForm = () => {
     }
   };
 
-  const validationSchema = yup.object().shape({
-    username: yup.string().required("your username can't be empty"),
-    email: yup.string().email().required('please enter a valid email'),
-    phoneNumber: yup.number().nullable().required('please enter a phonenumber'),
-    dob: yup.date().required('please enter a valid date')
-  });
-
   return (
     <Formik
-      initialValues={registrationData}
-      validationSchema={validationSchema}
-      onSubmit={(values, action) => {
-        // not working
-        setRegistrationData(values);
-        console.log('values ', values);
-        console.log('action ', action);
-        console.log('submit!');
+      initialValues={{ username: '', phoneNumber: '', email: '', dob: '', id: '' }}
+      onSubmit={(values) => {
+        registerUser(values);
+        //route away
       }}
     >
       <Form style={{ display: 'flex', flexDirection: 'column' }}>
@@ -72,6 +44,9 @@ export const RegistrationForm = () => {
         <RegistrationField type={'phoneNumber'} label={'Phone'} />
         <RegistrationField type={'dob'} label={'Date of birth'} />
 
+        <button style={{ padding: '0.5rem', marginTop: '2rem' }} type="submit">
+          Register
+        </button>
         {data ? (
           <>
             <br></br>
@@ -85,14 +60,6 @@ export const RegistrationForm = () => {
             <div>this label should change when you click Register</div>
           </>
         )}
-
-        <button
-          style={{ padding: '0.5rem', marginTop: '2rem' }}
-          onClick={registerUser}
-          type="submit"
-        >
-          Register
-        </button>
       </Form>
     </Formik>
   );
