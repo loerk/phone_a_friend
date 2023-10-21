@@ -1,4 +1,5 @@
 const express = require('express');
+const util = require('util');
 const router = express.Router();
 const { AccessToken, RoomServiceClient } = require('livekit-server-sdk');
 
@@ -11,7 +12,11 @@ const livekitHost = 'ws://localhost:7880';
 //   console.log('existing rooms', rooms);
 // });
 
-router.route('/:roomId').post((req, res) => {
+router.route('/').post(async (req, res) => {
+  // main endpoint to make room
+  console.log('room post');
+  const request = req.body;
+  console.log('request data ', request?.data);
   const roomService = new RoomServiceClient(livekitHost, 'devkey', 'secret');
 
   const opts = {
@@ -19,14 +24,18 @@ router.route('/:roomId').post((req, res) => {
     emptyTimeout: 10 * 60, // 10 minutes
     maxParticipants: 2
   };
-  res.send(
-    roomService.createRoom(opts).then((room) => {
+  res.send({
+    message: 'Room created',
+    data: await roomService.createRoom(opts).then((room) => {
       console.log('room created', room);
+      console.log('util.inspect ', util.inspect(room, false, null, true));
+      return room;
     })
-  );
+  });
 });
 
 router.route('/:roomId').delete((req, res) => {
+  //Deleting a room causes all Participants to be disconnected.
   const roomService = new RoomServiceClient(livekitHost, 'devkey', 'secret');
   res.send(
     roomService.deleteRoom(req.params?.roomId).then((room) => {
