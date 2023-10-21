@@ -13,8 +13,14 @@ export const RegistrationForm = () => {
 
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
+  const navigate = useNavigate();
+  // const userIsAlreadyRegistered = fetchData(`/user/${passageUserInfo?.id}`);
   const registerUser = async (userData) => {
-    const injectedUserData = { ...userData, id: passageUserInfo.id, email: passageUserInfo.email };
+    const injectedUserData = {
+      ...userData,
+      id: passageUserInfo?.id,
+      email: passageUserInfo?.email
+    };
     setLoading(true);
     try {
       const result = await fetchData('/api/users', 'POST', injectedUserData);
@@ -36,9 +42,7 @@ export const RegistrationForm = () => {
       initialValues={{ username: '', phoneNumber: '', email: '', dob: '', id: '' }}
       onSubmit={(values) => {
         registerUser(values);
-        //route away to Home.jsx
-        // navigate(‘/users’);
-        <Route path="/redirect" element={<Navigate to="/HomePage" />} />
+        navigate('/homepage');
       }}
     >
       <Form style={{ display: 'flex', flexDirection: 'column' }}>
