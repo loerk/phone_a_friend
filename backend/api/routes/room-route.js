@@ -14,6 +14,17 @@ roomService.createRoom(opts).then((room) => {
   console.log('room created', room);
 });
 
+const participants = await roomService.listParticipants(opts?.name);
+console.log('particpants ', participants);
+
+roomService.listRooms().then((rooms) => {
+  console.log('existing rooms', rooms);
+});
+// delete a room
+roomService.deleteRoom('myroom').then(() => {
+  console.log('room deleted');
+});
+
 router.route('/').get((req, res) => {
   res.send({ message: 'should return nothing from rooom' });
 });
