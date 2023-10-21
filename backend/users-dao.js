@@ -58,6 +58,23 @@ class UsersDao {
       throw new Error('Not possible to delete User');
     }
   };
+
+  static updateUserStatus = async (id, status) => {
+    try {
+      const objectId = new mongodb.ObjectId(id);
+
+      const updateResult = await usersCollection.updateOne(
+        { _id: objectId },
+        { $set: { status: status } }
+      );
+
+      return updateResult;
+    } catch (error) {
+      console.error(`Error updateUser: ${error.message}`);
+
+      throw new Error('Not possible to update User Status');
+    }
+  };
 }
 
 module.exports = UsersDao;

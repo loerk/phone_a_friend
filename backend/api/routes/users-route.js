@@ -25,4 +25,13 @@ router.route('/:id').get(async (req, res) => {
   res.send({ message: 'user found', data: userResponse });
 });
 
+router.route('/:id/status').post(async (req, res) => {
+  const id = req.params.id;
+  const updateInput = req.body;
+
+  const updateStatusResponse = await UsersDao.updateUserStatus(id, updateInput.status);
+
+  res.send({ message: 'user updated', data: updateStatusResponse });
+});
+
 module.exports = router;
