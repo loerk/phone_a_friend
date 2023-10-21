@@ -17,6 +17,14 @@ router
     res.send({ message: 'user created', id });
   });
 
+router.route('/email/:email').get(async (req, res) => {
+  const email = req.params.email;
+
+  const userResponse = await UsersDao.getByEmail(email);
+
+  res.send({ message: 'user found', data: userResponse });
+});
+
 router.route('/:id').get(async (req, res) => {
   const id = req.params.id;
 
