@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { usePassageUserInfo } from '../../hooks';
-
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { RegistrationField } from './RegistrationField';
 import { fetchData } from '../../api/fetcher';
+import HomePage from '../HomePage/HomePage';
 
 export const RegistrationForm = () => {
   const [data, setData] = useState(null);
@@ -35,7 +36,9 @@ export const RegistrationForm = () => {
       initialValues={{ username: '', phoneNumber: '', email: '', dob: '', id: '' }}
       onSubmit={(values) => {
         registerUser(values);
-        //route away
+        //route away to Home.jsx
+        // navigate(‘/users’);
+        <Route path="/redirect" element={<Navigate to="/HomePage" />} />
       }}
     >
       <Form style={{ display: 'flex', flexDirection: 'column' }}>

@@ -1,9 +1,11 @@
 .mainHeader {
+  font-family: 'Varela Round', sans-serif;
   padding: 20px 30px;
   display: flex;
   align-items: center;
-  background-color: #282727;
-  color: white;
+  background-color: lightgray;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: rgb(61, 61, 61);
 }
 
 .headerText {
@@ -11,13 +13,13 @@
   margin: 0px 10px;
 }
 
-.passageLogo {
+/* .passageLogo {
   background-image: url('https://storage.googleapis.com/passage-docs/passage-logo-dark.svg');
   background-repeat: no-repeat;
   width: 60px;
   height: 60px;
   cursor: pointer;
-}
+} */
 
 .spacer {
   flex-grow: 1;
@@ -27,6 +29,6 @@
 a,
 a:visited {
   margin-left: 20px;
-  color: white;
+  color: rgb(61, 61, 61);
   text-decoration-color: white;
 }
