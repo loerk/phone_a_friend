@@ -40,7 +40,7 @@ router.route('/:roomId').delete((req, res) => {
   );
 });
 
-const joinRoom = async (userId, roomId) => {
+const getRoomToken = async (userId, roomId) => {
   const roomService = new RoomServiceClient(livekitHost, 'devkey', 'secret');
 
   // if this room doesn't exist, it'll be automatically created when the first
@@ -64,8 +64,8 @@ const createRoomId = (participants) => {
 };
 
 router.route('/join/:roomId/:userId').post((req, res) => {
-  console.log('joining room');
-  res.send(joinRoom(req.params.userId, req.params.roomId));
+  console.log('getting room token');
+  res.send(getRoomToken(req.params.userId, req.params.roomId));
 });
 
 router.route('/roomid/:participants').get((req, res) => {
