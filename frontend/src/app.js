@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { PassageProvider } from '@passageidentity/passage-react';
 
 import Home from './views/Home';
@@ -18,8 +18,6 @@ import CalendarEdit from './components/CalendarEdit/CalendarEdit';
 import CalendarAdd from './components/CalendarAdd/CalendarAdd';
 
 function App() {
-  const navigate = useNavigate()
-
   return (
     <PassageProvider appId={process.env.REACT_APP_PASSAGE_APP_ID}>
       <div>

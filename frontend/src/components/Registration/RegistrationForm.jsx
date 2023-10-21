@@ -14,6 +14,9 @@ export const RegistrationForm = () => {
 
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
+  const navigate = useNavigate();
+  // const userIsAlreadyRegistered = fetchData(`/user/${passageUserInfo?.id}`);
+
   useEffect(() => {
     const getUserData = async (email) => {
       if (!email) return;
@@ -32,7 +35,11 @@ export const RegistrationForm = () => {
   }, [passageUserInfo]);
 
   const registerUser = async (userData) => {
-    const injectedUserData = { ...userData, id: passageUserInfo.id, email: passageUserInfo.email };
+    const injectedUserData = {
+      ...userData,
+      id: passageUserInfo?.id,
+      email: passageUserInfo?.email
+    };
     setLoading(true);
     try {
       const response = await fetchData('/api/users', 'POST', injectedUserData);
@@ -70,7 +77,7 @@ export const RegistrationForm = () => {
           }}
           onSubmit={(values) => {
             registerUser(values);
-            //route away
+            navigate('/homepage');
           }}
         >
           <Form style={{ display: 'flex', flexDirection: 'column' }}>

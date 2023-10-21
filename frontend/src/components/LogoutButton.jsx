@@ -10,7 +10,14 @@ export const LogoutButton = () => {
     logout();
     navigate('/');
   };
-  return <button onClick={signout}>Sign Out</button>;
+  return (
+    <button
+      style={{ padding: '1rem', borderRadius: '5%', border: 'none', cursor: 'pointer' }}
+      onClick={signout}
+    >
+      Sign Out
+    </button>
+  );
 };
 
 export default LogoutButton;

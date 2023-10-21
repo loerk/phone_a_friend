@@ -1,12 +1,14 @@
-/* *, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
-} */
+}
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(192, 219, 243);
+  background-color: rgb(184, 156, 156);
 }
 
 .container {
@@ -28,7 +30,6 @@ body {
   background-color: lightgray;
   margin: 30px auto;
 }
-
 
 .nameContainer {
   display: flex;
@@ -76,7 +77,6 @@ body {
   width: 700px;
 }
 
-
 .friendIcon {
   font-size: 40px;
   margin: 10px 10px;
@@ -96,7 +96,7 @@ body {
 .accountIcon {
   font-size: 120px;
   margin: 20px 0 10px 0;
-  color: forestgreen;
+  color: rgb(34, 128, 139);
   text-shadow: 3px 3px 5px gray;
 }
 
@@ -261,7 +261,7 @@ body {
   height: 34px;
 }
 
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -275,20 +275,20 @@ body {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
