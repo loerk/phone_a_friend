@@ -16,7 +16,7 @@ export const RegistrationForm = () => {
     //const injectedUserData = { ...userData, id: passageUserInfo.id };
     setLoading(true);
     try {
-      const result = await fetchData('/api/room', 'POST', '123');
+      const result = await fetchData('/api/room', 'POST', { data: '123' });
       if (typeof result !== 'string') {
         console.log({ result });
         setData(result);
@@ -53,7 +53,7 @@ export const RegistrationForm = () => {
       initialValues={{ username: '', phoneNumber: '', email: '', dob: '', id: '' }}
       onSubmit={(values) => {
         makeCall(values); // just for testing calls, move to different view later
-        registerUser(values);
+        // registerUser(values);
         //route away
       }}
     >

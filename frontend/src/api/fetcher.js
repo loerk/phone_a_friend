@@ -4,11 +4,13 @@ export const fetchData = async (path, method, data) => {
   const url = `${BASE_URL}${path}`;
   const postHeaders = {
     Accept: 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': BASE_URL
   };
 
   const getHeaders = {
     Accept: 'application/json',
+    credentials: 'include',
     'Content-Type': 'application/json'
   };
 
