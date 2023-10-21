@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { usePassageUserInfo } from '../../hooks';
-
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { RegistrationField } from './RegistrationField';
 import { fetchData } from '../../api/fetcher';
+import HomePage from '../HomePage/HomePage';
 
 export const RegistrationForm = () => {
   const [data, setData] = useState(null);
