@@ -1,6 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const livekitServer = require('livekit-server-sdk');
+const { AccessToken, RoomServiceClient } = require('livekit-server-sdk');
+
+const livekitHost = 'ws://localhost:7880';
+const roomService = new RoomServiceClient(livekitHost, 'devkey', 'secret');
+
+const opts = {
+  name: 'myroom',
+  emptyTimeout: 10 * 60, // 10 minutes
+  maxParticipants: 20
+};
+roomService.createRoom(opts).then((room) => {
+  console.log('room created', room);
+});
 
 router.route('/').get((req, res) => {
   res.send({ message: 'should return nothing from rooom' });
@@ -11,7 +23,7 @@ const createToken = (userId, roomId) => {
   // client joins
   // identifier to be used for participant.
   // it's available as LocalParticipant.identity with livekit-client SDK
-  const accessToken = new livekitServer.AccessToken('devkey', 'secret', {
+  const accessToken = new AccessToken('devkey', 'secret', {
     identity: userId
   });
 
@@ -25,7 +37,7 @@ const createRoomId = (participants) => {
   return roomId;
 };
 
-router.route('/roomtoken/:userId/:roomId').get((req, res) => {
+router.route('/getToken/:userId/:roomId').get((req, res) => {
   console.log('creating token ');
   res.send(createToken(req.params.userId, req.params.roomId));
 });
@@ -33,6 +45,14 @@ router.route('/roomtoken/:userId/:roomId').get((req, res) => {
 router.route('/roomid/:participants').get((req, res) => {
   console.log('creating room ');
   res.send(createRoomId(JSON.parse(req.params.participants)));
+});
+
+router.route('/connect/:roomId/:userId').post((req, res) => {
+  console.log('POST call room ');
+  console.log('req ', req);
+  const roomId = req.params?.roomId;
+  const userId = req.params?.userId;
+  res.send({ roomId: roomId, userId: userId });
 });
 
 module.exports = router;
