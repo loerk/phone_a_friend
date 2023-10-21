@@ -12,6 +12,24 @@ export const RegistrationForm = () => {
 
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
+  const makeCall = async () => {
+    //const injectedUserData = { ...userData, id: passageUserInfo.id };
+    setLoading(true);
+    try {
+      const result = await fetchData('/api/room', 'POST', '123');
+      if (typeof result !== 'string') {
+        console.log({ result });
+        setData(result);
+      } else {
+        throw new Error('Create Room Error');
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const registerUser = async (userData) => {
     const injectedUserData = { ...userData, id: passageUserInfo.id, email: passageUserInfo.email };
     setLoading(true);
@@ -34,6 +52,7 @@ export const RegistrationForm = () => {
     <Formik
       initialValues={{ username: '', phoneNumber: '', email: '', dob: '', id: '' }}
       onSubmit={(values) => {
+        makeCall(values); // just for testing calls, move to different view later
         registerUser(values);
         //route away
       }}

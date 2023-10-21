@@ -2,7 +2,6 @@ import styles from '../styles/Dashboard.module.css';
 import { PassageAuthGuard } from '@passageidentity/passage-react';
 import { usePassageUserInfo } from '../hooks';
 import { RegistrationForm } from '../components/Registration/RegistrationForm';
-import { AudioExample } from '../components/Audio Calls/AudioExample';
 
 function Dashboard() {
   const { userInfo, loading } = usePassageUserInfo();
@@ -32,7 +31,6 @@ function Dashboard() {
           <div className={styles.title}>GET STARTED</div>
           <div className={styles.message}>Please Answer a few questions</div>
           <RegistrationForm />
-          <AudioExample />
         </div>
       )}
     </>
