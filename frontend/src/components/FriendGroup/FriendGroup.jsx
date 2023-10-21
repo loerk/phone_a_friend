@@ -1,5 +1,4 @@
-import styles from '../styles/Dashboard.module.css';
-import './Home.css'
+import '../HomePage/HomePage.css'
 import { Link } from 'react-router-dom'
 import Edit from '../Edit/Edit'
 import Search from '../Search/Search'
@@ -19,8 +18,6 @@ export default function FriendGroup() {
           </span>
           </Link>
         </div>
-        <br />
-        <br />
         <div className='friendContainer'>
           <div>
             <span className="greenIcon material-symbols-outlined">
@@ -28,7 +25,7 @@ export default function FriendGroup() {
             </span>
           </div>
           <div className='nameContainer'>
-            <div className='time'>Emily Cooper</div>
+            <div className='frGroup'>Emily Cooper</div>
           </div>
           <div className='addContainer'>
             <Link to="/edit">
@@ -51,7 +48,7 @@ export default function FriendGroup() {
             </span>
           </div>
           <div className='nameContainer'>
-            <div className='time'>Gabriel Cadault</div>
+            <div className='frGroup'>Gabriel Cadault</div>
           </div>
           <div className='addContainer'>
             <span className="friendIcon material-symbols-outlined">
@@ -72,7 +69,7 @@ export default function FriendGroup() {
             </span>
           </div>
           <div className='nameContainer'>
-            <div className='time'>Mindy Chen</div>
+            <div className='frGroup'>Mindy Chen</div>
           </div>
           <div className='addContainer'>
             <span className="friendIcon material-symbols-outlined">
@@ -93,7 +90,7 @@ export default function FriendGroup() {
             </span>
           </div>
           <div className='nameContainer'>
-            <div className='time'>Alfie Lambert</div>
+            <div className='frGroup'>Alfie Lambert</div>
           </div>
           <div className='addContainer'>
             <span className="friendIcon material-symbols-outlined">

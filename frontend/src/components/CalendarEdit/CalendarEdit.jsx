@@ -1,22 +1,31 @@
-import './Home.css'
+import '../HomePage/HomePage.css'
+import { Link } from 'react-router-dom'
+import Calendar from '../Calendar/Calendar'
+import CalendarAdd from '../CalendarAdd/CalendarAdd'
 
-export default function Calendar() {
+export default function CalendarEdit() {
 
   return (
     <>
       <div>
         <div>
-          <h1 className='maintitle'>My Availability</h1>
+          <h1 className='maintitle'>Edit Availability</h1>
         </div>
-        <div className='editContainer'>
-          <h1 className='editIcon'>Edit</h1>
-          <span className="homeIcon material-symbols-outlined">
-            add
-          </span>
+        <div className='editContainer' style={{ position: 'relative', left: '300px' }}>
+          <Link to="/calendar" style={{ textDecoration: 'none' }}>
+            <h1 className='editIcon'>Done</h1> 
+          </Link>       
         </div>
         <br />
         <br />
         <div className='iconContainer'>
+          <div>
+            <Link to='/calendaradd'>
+              <span className="homeIcon material-symbols-outlined">
+                edit
+              </span>
+            </Link>
+          </div>
           <div>
             <div className='day'>Monday</div>
           </div>
@@ -25,14 +34,15 @@ export default function Calendar() {
             <div className='day'>to</div>
             <div className='time'>9:00<span className='day'>AM</span></div>
           </div>
-          <div>
-            <label className='switch'>
-              <input type="checkbox" />
-              <span className='slider round'></span>
-            </label>
-          </div>
         </div>
         <div className='iconContainer'>
+          <div>
+            <Link to='/calendaradd'>
+              <span className="homeIcon material-symbols-outlined">
+                edit
+              </span>
+            </Link>
+          </div>
           <div>
             <div className='day'>Tuesday</div>
           </div>
@@ -41,12 +51,7 @@ export default function Calendar() {
             <div className='day'>to</div>
             <div className='time'>10:00<span className='day'>PM</span></div>
           </div>
-          <div>
-            <label className='switch'>
-              <input type="checkbox" />
-              <span className='slider round'></span>
-            </label>
-          </div>
+          
         </div>        
       </div>
       

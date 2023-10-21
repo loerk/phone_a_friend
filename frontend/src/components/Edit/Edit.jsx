@@ -1,4 +1,4 @@
-import './Home.css'
+import '../HomePage/HomePage.css'
 import { Link } from 'react-router-dom'
 import FriendGroup from '../FriendGroup/FriendGroup'
 
