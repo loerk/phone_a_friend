@@ -67,7 +67,7 @@ const createRoomId = (participants) => {
 router.route('/join/:roomId/:userId').post(async (req, res) => {
   console.log('getting room token');
   const token = await getRoomToken(req.params.userId, req.params.roomId);
-  res.send(token);
+  res.send(JSON.stringify(token));
 });
 
 router.route('/roomid/:participants').get((req, res) => {
