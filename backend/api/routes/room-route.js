@@ -16,15 +16,15 @@ router.route('/').post(async (req, res) => {
   const roomService = new RoomServiceClient(livekitHost, 'devkey', 'secret');
 
   const opts = {
-    name: 'happy-frog-dance', //'room-' + userId,
+    name: 'happy-frog-dance2', //'room-' + userId,
     emptyTimeout: 10 * 60, // 10 minutes
     maxParticipants: 2
   };
   res.send({
     message: 'Room created',
     data: await roomService.createRoom(opts).then((room) => {
-      console.log('room created', room);
-      console.log('util.inspect ', util.inspect(room, false, null, true));
+      console.log('room created', room.name);
+      //console.log('util.inspect ', util.inspect(room, false, null, true));
       return room;
     })
   });
@@ -54,6 +54,7 @@ const getRoomToken = async (userId, roomId) => {
   accessToken.addGrant({ roomJoin: true, room: roomId });
   const participants = await roomService.listParticipants(roomId);
   console.log('participants ', participants);
+  console.log(' token ', accessToken.toJwt());
   return accessToken.toJwt();
 };
 
@@ -63,9 +64,10 @@ const createRoomId = (participants) => {
   return roomId;
 };
 
-router.route('/join/:roomId/:userId').post((req, res) => {
+router.route('/join/:roomId/:userId').post(async (req, res) => {
   console.log('getting room token');
-  res.send(getRoomToken(req.params.userId, req.params.roomId));
+  const token = await getRoomToken(req.params.userId, req.params.roomId);
+  res.send(token);
 });
 
 router.route('/roomid/:participants').get((req, res) => {
