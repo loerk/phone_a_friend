@@ -31,7 +31,7 @@ export const fetchData = async (path, method, data) => {
       method === 'GET' || method === 'DELETE' ? getOptions : postOptions
     );
     if (response.ok) {
-      const data = response.json();
+      const data = await response.json();
       return data;
     }
     throw new Error('sorry, something went wrong');

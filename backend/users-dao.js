@@ -33,6 +33,20 @@ class UsersDao {
     }
   };
 
+  static getByEmail = async (email) => {
+    try {
+      const user = await usersCollection.findOne({
+        email
+      });
+
+      return user;
+    } catch (error) {
+      console.error(`Error getUser: ${error.message}`);
+
+      throw new Error('Not possible to find user');
+    }
+  };
+
   static addUser = async (request) => {
     try {
       const newUser = await usersCollection.insertOne(request);

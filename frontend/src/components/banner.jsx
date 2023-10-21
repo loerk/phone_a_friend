@@ -8,12 +8,16 @@ function Banner() {
 
   return (
     <div className={styles.mainHeader}>
-      <div className={styles.headerText}>Phone A Friend</div>
+      <Link style={{ textDecoration: 'none' }} className={styles.headerText} to={'/homepage'}>
+        HOME
+      </Link>
       <div className={styles.spacer}></div>
 
       {userInfo && (
         <>
-          <Link to={'/profile'}>Profile</Link>
+          <Link style={{ textDecoration: 'none', padding: '2rem' }} to={'/profile'}>
+            Profile
+          </Link>
           <LogoutButton />
         </>
       )}
