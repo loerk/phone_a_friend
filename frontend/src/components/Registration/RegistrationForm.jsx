@@ -15,11 +15,17 @@ export const RegistrationForm = () => {
   const makeCall = async () => {
     //const injectedUserData = { ...userData, id: passageUserInfo.id };
     setLoading(true);
+    console.log('makeCall');
     try {
-      const result = await fetchData('/api/room', 'POST', { data: '123' });
+      const room = await fetchData('/api/room', 'POST', { data: passageUserInfo });
+      console.log('room ', room);
+      const roomId = 'happy-frog-dance2'; //room.data.name;
+      const userId = passageUserInfo.id;
+      console.log('userId ', userId);
+      const result = await fetchData(`/api/room/join/${roomId}/${userId}`, 'POST');
+      console.log('result ', result);
       if (typeof result !== 'string') {
         console.log({ result });
-        setData(result);
       } else {
         throw new Error('Create Room Error');
       }
@@ -53,7 +59,7 @@ export const RegistrationForm = () => {
       initialValues={{ username: '', phoneNumber: '', email: '', dob: '', id: '' }}
       onSubmit={(values) => {
         makeCall(values); // just for testing calls, move to different view later
-        // registerUser(values);
+        registerUser(values);
         //route away
       }}
     >

@@ -5,9 +5,6 @@ const { AccessToken, RoomServiceClient } = require('livekit-server-sdk');
 
 const livekitHost = 'ws://localhost:7880';
 
-// const participants = await roomService.listParticipants(opts?.name);
-// console.log('participants ', participants);
-
 // roomService.listRooms().then((rooms) => {
 //   console.log('existing rooms', rooms);
 // });
@@ -15,12 +12,11 @@ const livekitHost = 'ws://localhost:7880';
 router.route('/').post(async (req, res) => {
   // main endpoint to make room
   console.log('room post');
-  const request = req.body;
-  console.log('request data ', request?.data);
+  //console.log('req ', req);
   const roomService = new RoomServiceClient(livekitHost, 'devkey', 'secret');
 
   const opts = {
-    name: req.params?.roomId,
+    name: 'happy-frog-dance', //'room-' + userId,
     emptyTimeout: 10 * 60, // 10 minutes
     maxParticipants: 2
   };
@@ -44,7 +40,9 @@ router.route('/:roomId').delete((req, res) => {
   );
 });
 
-const createToken = (userId, roomId) => {
+const joinRoom = async (userId, roomId) => {
+  const roomService = new RoomServiceClient(livekitHost, 'devkey', 'secret');
+
   // if this room doesn't exist, it'll be automatically created when the first
   // client joins
   // identifier to be used for participant.
@@ -54,6 +52,8 @@ const createToken = (userId, roomId) => {
   });
 
   accessToken.addGrant({ roomJoin: true, room: roomId });
+  const participants = await roomService.listParticipants(roomId);
+  console.log('participants ', participants);
   return accessToken.toJwt();
 };
 
@@ -63,9 +63,9 @@ const createRoomId = (participants) => {
   return roomId;
 };
 
-router.route('/getToken/:userId/:roomId').get((req, res) => {
-  console.log('creating token ');
-  res.send(createToken(req.params.userId, req.params.roomId));
+router.route('/join/:roomId/:userId').post((req, res) => {
+  console.log('joining room');
+  res.send(joinRoom(req.params.userId, req.params.roomId));
 });
 
 router.route('/roomid/:participants').get((req, res) => {
