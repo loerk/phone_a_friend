@@ -1,3 +1,3 @@
 import { createContext } from 'react';
 
-export const MyContext = createContext('beforeUpdate');
+export const MyContext = createContext({ userName: null });

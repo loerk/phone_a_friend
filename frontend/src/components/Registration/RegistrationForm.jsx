@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { usePassageUserInfo } from '../../hooks';
 import { useNavigate } from 'react-router-dom'; //Routes, Route,
 import { RegistrationField } from './RegistrationField';
 import { fetchData } from '../../api/fetcher';
+import { MyContext } from '../../MyContext';
 //import HomePage from '../HomePage/HomePage';
 
 export const RegistrationForm = () => {
@@ -12,6 +13,7 @@ export const RegistrationForm = () => {
   const [loading, setLoading] = useState(false);
   const [loadingData, setLoadingData] = useState(true);
 
+  const { context, setContext } = useContext(MyContext);
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
   const navigate = useNavigate();
@@ -22,12 +24,14 @@ export const RegistrationForm = () => {
       if (!email) return;
       const response = await fetchData(`/api/users/email/${email}`, 'GET');
       console.log('userData Found', response);
-      setData({
+      let userContext = {
         userName: response?.data?.username,
         phoneNumber: response?.data?.phoneNumber,
         email: response?.data?.email,
         dob: response?.data?.dob
-      });
+      };
+      setData(userContext);
+      setContext(userContext);
       setLoadingData(false);
     };
 
@@ -46,12 +50,15 @@ export const RegistrationForm = () => {
       console.log('result', response);
       if (typeof result !== 'string') {
         console.log({ response });
-        setData({
+        let userContext = {
           userName: response?.data?.username,
           phoneNumber: response?.data?.phoneNumber,
           email: response?.data?.email,
           dob: response?.data?.dob
-        });
+        };
+        setData(userContext);
+        console.log('b4 setting context ', context);
+        setContext(userContext);
       } else {
         throw new Error('Registration Error');
       }

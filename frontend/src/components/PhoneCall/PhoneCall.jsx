@@ -27,18 +27,18 @@ import { useContext } from 'react';
 // };
 console.log(this);
 
-export default function PhoneCall({ user }) {
+export default function PhoneCall() {
   //console.log('makeCall fake call ', makeCall);
   //const user = '123';
   //const friend = '456';
   const { context, setContext } = useContext(MyContext);
-  console.log('Text from context ', context);
+  console.log('Calling from phonecall context ', context);
   const fakeToken1 =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTgwMjIwNzIsImlzcyI6ImRldmtleSIsIm5hbWUiOiJ1c2VyMSIsIm5iZiI6MTY5NzkzNTY3Miwic3ViIjoidXNlcjEiLCJ2aWRlbyI6eyJyb29tIjoiaGFwcHktZnJvZy1kYW5jZTIiLCJyb29tSm9pbiI6dHJ1ZX19.HnzZ6vBB6GKgpL3u2kC06Y7VZBwJdMUis8inOGFGZyU';
   const fakeToken2 =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTgwMjIwOTYsImlzcyI6ImRldmtleSIsIm5hbWUiOiJ1c2VyMiIsIm5iZiI6MTY5NzkzNTY5Niwic3ViIjoidXNlcjIiLCJ2aWRlbyI6eyJyb29tIjoiaGFwcHktZnJvZy1kYW5jZTIiLCJyb29tSm9pbiI6dHJ1ZX19.OFZPgiiGsaLn1eKKkd41y4kEU-5X2kpFDVOKWZq6xvs';
   let token;
-  if (user == '123') token = fakeToken1;
+  if (context.email == 'liannanovitz@gmail.com') token = fakeToken1;
   else token = fakeToken2;
 
   const wsUrl = 'ws://localhost:7880/';
