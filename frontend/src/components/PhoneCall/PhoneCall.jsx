@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 // import
 
+
 const makeCall = async (userId) => {
   console.log('makeCall');
   //const fakeId = '123';
@@ -48,15 +49,13 @@ export default function PhoneCall() {
   console.log('makeCall fake call ', makeCall);
   // const token =
   //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2aWRlbyI6eyJyb29tSm9pbiI6dHJ1ZSwicm9vbSI6ImhhcHB5LWZyb2ctZGFuY2UyIn0sImlhdCI6MTY5Nzk1MDIyMiwibmJmIjoxNjk3OTUwMjIyLCJleHAiOjE2OTc5NzE4MjIsImlzcyI6ImRldmtleSIsInN1YiI6InVuZGVmaW5lZCIsImp0aSI6InVuZGVmaW5lZCJ9.4z1ry0jmc-TkbLKILOLiC9HvkET8YSgxhOHC-Zv_HKk';
-  const wsUrl = 'ws://localhost:7880/';
+  const livekitHost = process.env.LIVEKIT_HOST;
 
-  console.log('token', token);
-  console.log('wsUrl ', wsUrl);
   return (
     // livekit component
     <div>
       <h1 className="maintitle">Calling...</h1>
-      <LiveKitRoom audio={true} video={false} token={token} serverUrl={wsUrl}>
+      <LiveKitRoom audio={true} video={false} token={token} serverUrl={livekitHost}>
         <ControlBar />
       </LiveKitRoom>
     </div>

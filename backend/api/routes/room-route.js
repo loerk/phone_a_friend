@@ -3,7 +3,9 @@ const util = require('util');
 const router = express.Router();
 const { AccessToken, RoomServiceClient } = require('livekit-server-sdk');
 
-const livekitHost = 'ws://localhost:7880';
+const livekitHost = process.env.LIVEKIT_HOST;
+const livekitApiKey =  process.env.LIVEKIT_API_KEY;
+const livekitApiSecret = process.env.LIVEKIT_API_SECRET;
 
 // roomService.listRooms().then((rooms) => {
 //   console.log('existing rooms', rooms);
@@ -12,8 +14,9 @@ const livekitHost = 'ws://localhost:7880';
 router.route('/').post(async (req, res) => {
   // main endpoint to make room
   console.log('room post');
+
   //console.log('req ', req);
-  const roomService = new RoomServiceClient(livekitHost, 'devkey', 'secret');
+  const roomService = new RoomServiceClient(livekitHost, livekitApiKey, newLocal);
 
   const opts = {
     name: 'happy-frog-dance2', //'room-' + userId,
@@ -32,7 +35,7 @@ router.route('/').post(async (req, res) => {
 
 router.route('/:roomId').delete((req, res) => {
   //Deleting a room causes all Participants to be disconnected.
-  const roomService = new RoomServiceClient(livekitHost, 'devkey', 'secret');
+  const roomService = new RoomServiceClient(livekitHost, livekitApiKey, livekitApiSecret);
   res.send(
     roomService.deleteRoom(req.params?.roomId).then((room) => {
       console.log('room deleted', room);
@@ -41,13 +44,13 @@ router.route('/:roomId').delete((req, res) => {
 });
 
 const getRoomToken = async (userId, roomId) => {
-  const roomService = new RoomServiceClient(livekitHost, 'devkey', 'secret');
+  const roomService = new RoomServiceClient(livekitHost, livekitApiKey, livekitApiSecret);
 
   // if this room doesn't exist, it'll be automatically created when the first
   // client joins
   // identifier to be used for participant.
   // it's available as LocalParticipant.identity with livekit-client SDK
-  const accessToken = new AccessToken('devkey', 'secret', {
+  const accessToken = new AccessToken(livekitApiKey, livekitApiSecret, {
     identity: userId
   });
 
