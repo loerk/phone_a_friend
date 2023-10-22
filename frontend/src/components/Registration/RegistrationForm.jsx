@@ -26,7 +26,7 @@ export const RegistrationForm = () => {
         if (typeof response === 'string') {
           throw new Error('Error');
         }
-        if (response?.data?.id) {
+        if (response?.data?._id) {
           navigate('/homepage');
         } else {
           setData({
