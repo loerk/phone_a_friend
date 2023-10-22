@@ -7,7 +7,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: rgb(184, 156, 156);
 }
@@ -15,4 +15,7 @@ body {
 iframe#webpack-dev-server-client-overlay {
   display: none !important;
   visibility: hidden !important;
+}
+a {
+  text-decoration: auto;
 }
