@@ -7,8 +7,6 @@ import React, { useEffect, useState } from 'react';
 // import
 
 const makeCall = async (userId) => {
-  console.log('makeCall');
-  //const fakeId = '123';
   try {
     const room = await fetchData('/api/room', 'POST', { data: userId });
     console.log('room ', room);
@@ -32,7 +30,7 @@ export default function PhoneCall() {
   console.log('state ', state);
   console.log('token before useEffect', token);
   //console.log('userInfo from homepage passed to PhoneCall ', userInfo);
-  const userId = state?.userInfo?.data?._id;
+  const userId = state?.userInfo?._id;
   useEffect(() => {
     // React advises to declare the async function directly inside useEffect
     async function getToken() {
