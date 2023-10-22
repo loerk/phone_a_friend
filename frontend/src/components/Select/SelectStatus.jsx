@@ -4,7 +4,7 @@ import SelectTime from './SelectTime';
 
 export default function SelectStatus() {
   const [status, setStatus] = useState('available');
-  const [time, setTime] = useState(null);
+  const [setTime] = useState(null);
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
   // TODO: send status and Time to the backend

@@ -1,9 +1,7 @@
-import styles from './Result.module.css'
-import { Link } from 'react-router-dom'
-import FriendGroup from '../FriendGroup/FriendGroup'
+import styles from './Result.module.css';
+import { Link } from 'react-router-dom';
 
 export default function Result() {
-
   return (
     <>
       <div className={styles.center}>
@@ -13,14 +11,10 @@ export default function Result() {
         <div className={styles.container}>
           <div className={styles.right}>
             <Link to="/friendgroup">
-              <span className={styles.smallIcon}>
-                save
-              </span>
+              <span className={styles.smallIcon}>save</span>
             </Link>
             <Link to="/friendgroup">
-              <span className={styles.smallIcon}>
-                cancel
-              </span>
+              <span className={styles.smallIcon}>cancel</span>
             </Link>
           </div>
           <div>
@@ -36,8 +30,8 @@ export default function Result() {
               </div>
             </div>
           </div>
-        </div>       
+        </div>
       </div>
     </>
-  )
+  );
 }

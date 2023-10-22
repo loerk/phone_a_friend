@@ -32,6 +32,12 @@ To run this application, follow the instructions below to install and start the 
 
 1. Rename the EXAMPLE.env file to .env for both the frontend and backend directories
 2. Replace the example variables for each .env file with your own Passage App ID and API Key. You can get these from the [Passage Console](https://console.passage.id).
+3. Add the following to frontend / .env
+
+```
+NEXT_PUBLIC_LK_TOKEN_ENDPOINT=http://localhost:7001/api/livekit/roomtoken
+NEXT_PUBLIC_LK_SERVER_URL=ws://localhost:7880/
+```
 
 ## Run a local livekit server
 This project uses livekit to handle calls. For development a livekit server can be run locally via the steps below.

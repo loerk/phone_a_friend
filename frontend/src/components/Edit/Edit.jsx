@@ -1,26 +1,20 @@
-import styles from './Edit.module.css'
-import { Link } from 'react-router-dom'
-import FriendGroup from '../FriendGroup/FriendGroup'
+import styles from './Edit.module.css';
+import { Link } from 'react-router-dom';
 
 export default function Edit() {
-
   return (
     <>
       <div className={styles.center}>
-        <div >
+        <div>
           <h1 className={styles.mainTitle}>Edit</h1>
         </div>
-        <div className={styles.container}>          
+        <div className={styles.container}>
           <div className={styles.right}>
             <Link to="/friendgroup">
-              <span className={styles.smallIcon}>
-                save
-              </span>
+              <span className={styles.smallIcon}>save</span>
             </Link>
             <Link to="/friendgroup">
-              <span className={styles.smallIcon}>
-                cancel
-              </span>
+              <span className={styles.smallIcon}>cancel</span>
             </Link>
           </div>
           <div>
@@ -37,8 +31,8 @@ export default function Edit() {
               <div className={styles.entry}>(213) 456-7890</div>
             </div>
           </div>
-        </div>       
+        </div>
       </div>
     </>
-  )
+  );
 }

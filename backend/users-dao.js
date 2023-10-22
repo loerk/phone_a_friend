@@ -11,7 +11,7 @@ class UsersDao {
       const usersDB = client.db('phone_a_friend');
       usersCollection = usersDB.collection('users');
     } catch (error) {
-      console.error(`Unable to stablish a collection-handles: ${error}`);
+      console.error(`Unable to establish a collection-handles: ${error}`);
 
       throw new Error('Unable to connect to db');
     }
@@ -53,7 +53,7 @@ class UsersDao {
 
       return newUser;
     } catch (error) {
-      console.error(`Error addThing: ${error.message}`);
+      console.error(`Error addUser: ${error.message}`);
 
       throw new Error('Not possible to add user');
     }
