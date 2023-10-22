@@ -1,33 +1,32 @@
-import '../HomePage/HomePage.css';
+import styles from './Result.module.css';
 import { Link } from 'react-router-dom';
-//import FriendGroup from '../FriendGroup/FriendGroup';
 
 export default function Result() {
   return (
     <>
-      <div>
+      <div className={styles.center}>
         <div>
-          <h1 className="maintitle">Results</h1>
+          <h1 className={styles.mainTitle}>Results</h1>
         </div>
-        <div className="resultContainer">
-          <div className="editBtnContainer">
+        <div className={styles.container}>
+          <div className={styles.right}>
             <Link to="/friendgroup">
-              <span className="friendIcon material-symbols-outlined">save</span>
+              <span className={styles.smallIcon}>save</span>
             </Link>
             <Link to="/friendgroup">
-              <span className="friendIcon material-symbols-outlined">cancel</span>
+              <span className={styles.smallIcon}>cancel</span>
             </Link>
           </div>
           <div>
-            <div className="editNameContainer">
-              <div className="title">Name: </div>
-              <div className="entry">Emily Cooper</div>
+            <div className={styles.nameContainer}>
+              <div className={styles.title}>Name: </div>
+              <div className={styles.entry}>Emily Cooper</div>
             </div>
-            <div className="editNameContainer">
-              <div className="title">Info: </div>
-              <div className="entry">
+            <div className={styles.nameContainer}>
+              <div className={styles.title}>Info: </div>
+              <div className={styles.entry}>
                 <p>New York</p>
-                <p>Digital Marketing Executive</p>
+                <p>Digital Content Creator</p>
               </div>
             </div>
           </div>
