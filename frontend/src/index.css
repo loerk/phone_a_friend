@@ -1,8 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0px;
+  margin: 0;
   height: 100vh;
-  font-family: sans-serif;
-  background-color: #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(184, 156, 156);
 }
 
 iframe#webpack-dev-server-client-overlay {

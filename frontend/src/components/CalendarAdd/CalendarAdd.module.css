@@ -1,0 +1,107 @@
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainTitle {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 40px;
+  padding: 20px;
+  color: rgb(61, 61, 61);
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 5px gray;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 700px;
+}
+
+.selectContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.medIcon { 
+  font-size: 80px;
+  margin: 10px 50px;
+  color: rgb(61, 61, 61);
+  text-shadow: 3px 3px 5px gray;
+  font-family: 'Material Symbols Outlined';
+}
+
+.calDay {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 20px;
+  width: 200px;
+  padding: 5px;
+  color: rgb(61, 61, 61);
+  text-align: center;
+}
+
+.calDaySel {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 30px;
+  width: 200px;
+  padding: 5px;
+  border-radius: 10px;
+  color: rgb(61, 61, 61);
+  background-color: lightgray;
+  box-shadow: 5px 5px 5px gray;
+  text-align: center;
+}
+
+.calTo {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 30px;
+  width: 100px;
+  padding: 5px;
+  color: rgb(61, 61, 61);
+  text-align: center;
+}
+
+.calTime {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 20px;
+  width: 200px;
+  padding: 5px;
+  color: rgb(61, 61, 61);
+  text-align: center;
+}
+
+.calTimeSel {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 30px;
+  width: 200px;
+  padding: 5px;
+  border-radius: 10px;
+  color: rgb(61, 61, 61);
+  background-color: lightgray;
+  box-shadow: 5px 5px 5px gray;
+  text-align: center;
+}
+
+.ampm {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 20px;
+  padding: 5px;
+  color: rgb(61, 61, 61);
+  text-align: center;
+}
+
+.ampmSel {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 10px;
+  color: rgb(61, 61, 61);
+  background-color: whitesmoke;
+  box-shadow: 5px 5px 5px gray;
+  text-align: center;
+}

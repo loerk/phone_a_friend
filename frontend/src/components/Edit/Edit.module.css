@@ -1,0 +1,73 @@
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainTitle {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 40px;
+  padding: 20px;
+  color: rgb(61, 61, 61);
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 5px gray;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 5px gray;
+  width: 800px;
+  height: 400px;
+  background-color: lightgray;
+  margin: auto;
+}
+
+.right {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 700px;
+}
+
+.smallIcon {
+  font-size: 40px;
+  margin: 10px 10px;
+  color: rgb(61, 61, 61);
+  text-shadow: 3px 3px 5px gray;
+  font-family: 'Material Symbols Outlined'
+}
+
+.nameContainer {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 750px;
+  padding: 10px;
+}
+.title {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 40px;
+  width: 200px;
+  padding: 10px;
+  color: rgb(61, 61, 61);
+  text-align: right;
+  padding-right: 30px;
+  margin: 5px;
+}
+.entry {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 40px;
+  width: 500px;
+  padding: 10px;
+  color: rgb(61, 61, 61);
+  background-color: whitesmoke;
+  text-align: left;
+  padding-left: 30px;
+  margin: 5px;
+}
+
