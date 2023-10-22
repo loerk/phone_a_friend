@@ -20,15 +20,26 @@ export const RegistrationForm = () => {
   useEffect(() => {
     const getUserData = async (email) => {
       if (!email) return;
-      const response = await fetchData(`/api/users/email/${email}`, 'GET');
-      console.log('userData Found', response);
-      setData({
-        userName: response?.data?.username,
-        phoneNumber: response?.data?.phoneNumber,
-        email: response?.data?.email,
-        dob: response?.data?.dob
-      });
-      setLoadingData(false);
+      try {
+        const response = await fetchData(`/api/users/email/${email}`, 'GET');
+        if (typeof response === 'string') {
+          throw new Error('Error');
+        }
+        if (response?.data?.id) {
+          navigate('/homepage');
+        } else {
+          setData({
+            userName: response?.data?.username,
+            phoneNumber: response?.data?.phoneNumber,
+            email: response?.data?.email,
+            dob: response?.data?.dob
+          });
+        }
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoadingData(false);
+      }
     };
 
     getUserData(passageUserInfo?.email);
@@ -65,7 +76,7 @@ export const RegistrationForm = () => {
   return (
     <>
       {loadingData ? (
-        <p>Fetching user info</p>
+        <p>Loading...</p>
       ) : (
         <Formik
           initialValues={{
