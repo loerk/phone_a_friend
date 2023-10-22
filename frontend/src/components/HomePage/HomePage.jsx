@@ -10,7 +10,8 @@ const buttonStyles = {
   background: 'transparent',
   borderRadius: '1rem',
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  alignItems: 'center'
 };
 
 const containerStyles = {
@@ -35,7 +36,7 @@ export default function HomePage() {
           <button
             style={{
               ...buttonStyles,
-              background: status === 'available' ? 'white' : 'transparent',
+              background: status === 'available' ? 'rosyBrown' : 'transparent',
               color: status === 'available' ? 'black' : 'white'
             }}
             onClick={() => setStatus('available')}
@@ -46,7 +47,7 @@ export default function HomePage() {
           <button
             style={{
               ...buttonStyles,
-              background: status === 'unavailable' ? 'white' : 'transparent',
+              background: status === 'unavailable' ? 'rosyBrown' : 'transparent',
               color: status === 'unavailable' ? 'black' : 'white'
             }}
             onClick={() => setStatus('unavailable')}
@@ -57,7 +58,7 @@ export default function HomePage() {
           <button
             style={{
               ...buttonStyles,
-              background: status === 'moody' ? 'white' : 'transparent',
+              background: status === 'moody' ? 'rosyBrown' : 'transparent',
               color: status === 'moody' ? 'black' : 'white'
             }}
             onClick={() => setStatus('moody')}
