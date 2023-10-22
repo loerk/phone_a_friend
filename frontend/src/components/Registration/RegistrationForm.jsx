@@ -79,7 +79,7 @@ export const RegistrationForm = () => {
           onSubmit={(values) => {
             registerUser(values);
             navigate('/homepage', {
-              state: { 'test from register': 'test' }
+              state: { data }
             });
           }}
         >

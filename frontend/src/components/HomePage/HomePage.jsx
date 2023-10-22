@@ -29,7 +29,7 @@ export default function HomePage() {
             </Link>
           </div>
           <div>
-            <Link to="/phonecall" state={{ userInfo: data }}>
+            <Link to="/phonecall" state={{ userInfo: state }}>
               <span className="homeIcon material-symbols-outlined">add_call</span>
             </Link>
           </div>
