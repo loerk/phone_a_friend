@@ -17,33 +17,32 @@ import Search from './components/Search/Search';
 import Result from './components/Result/Result';
 import CalendarEdit from './components/CalendarEdit/CalendarEdit';
 import CalendarAdd from './components/CalendarAdd/CalendarAdd';
+import RegistrationForm from './components/Registration/RegistrationForm';
 
 function App() {
-  const [context, setContext] = useState('');
-
+  const [data, setData] = useState({});
+  console.log('data from app.js ', data);
   return (
     <PassageProvider appId={process.env.REACT_APP_PASSAGE_APP_ID}>
-      <MyContext.Provider value={{ context, setContext }}>
-        <div>
-          <Banner />
-          <div className={styles.mainContainer}>
-            <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/dashboard" element={<Dashboard />}></Route>
-              <Route path="/profile" element={<Profile />}></Route>
-              <Route path="/homepage" element={<HomePage />}></Route>
-              <Route path="/friendgroup" element={<FriendGroup />}></Route>
-              <Route path="/phonecall" element={<PhoneCall />}></Route>
-              <Route path="/calendar" element={<Calendar />}></Route>
-              <Route path="/edit" element={<Edit />}></Route>
-              <Route path="/search" element={<Search />}></Route>
-              <Route path="/result" element={<Result />}></Route>
-              <Route path="/calendaredit" element={<CalendarEdit />}></Route>
-              <Route path="/calendaradd" element={<CalendarAdd />}></Route>
-            </Routes>
-          </div>
+      <div>
+        <Banner />
+        <div className={styles.mainContainer}>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
+            <Route path="/profile" element={<Profile />}></Route>
+            <Route path="/homepage" element={<HomePage />}></Route>
+            <Route path="/friendgroup" element={<FriendGroup />}></Route>
+            <Route path="/phonecall" element={<PhoneCall />}></Route>
+            <Route path="/calendar" element={<Calendar />}></Route>
+            <Route path="/edit" element={<Edit />}></Route>
+            <Route path="/search" element={<Search />}></Route>
+            <Route path="/result" element={<Result />}></Route>
+            <Route path="/calendaredit" element={<CalendarEdit />}></Route>
+            <Route path="/calendaradd" element={<CalendarAdd />}></Route>
+          </Routes>
         </div>
-      </MyContext.Provider>
+      </div>
     </PassageProvider>
   );
 }

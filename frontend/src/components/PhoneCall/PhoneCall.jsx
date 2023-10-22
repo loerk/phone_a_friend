@@ -1,6 +1,6 @@
 import '../HomePage/HomePage.css';
-import { MyContext } from '../../MyContext';
-import { useContext } from 'react';
+import { useState } from 'react';
+import { RegistrationForm } from '../Registration/RegistrationForm';
 //const { LiveKitRoom } = require('@livekit/components-react');
 //import { fetchData } from '../../api/fetcher';
 
@@ -25,20 +25,19 @@ import { useContext } from 'react';
 //     console.log('Error ', error);
 //   }
 // };
-console.log(this);
 
-export default function PhoneCall() {
+export default function PhoneCall({ userInfo }) {
+  console.log('userInfo data from phone call', userInfo);
   //console.log('makeCall fake call ', makeCall);
   //const user = '123';
   //const friend = '456';
-  const { context, setContext } = useContext(MyContext);
-  console.log('Calling from phonecall context ', context);
+  console.log('Calling from phonecall context ', userInfo);
   const fakeToken1 =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTgwMjIwNzIsImlzcyI6ImRldmtleSIsIm5hbWUiOiJ1c2VyMSIsIm5iZiI6MTY5NzkzNTY3Miwic3ViIjoidXNlcjEiLCJ2aWRlbyI6eyJyb29tIjoiaGFwcHktZnJvZy1kYW5jZTIiLCJyb29tSm9pbiI6dHJ1ZX19.HnzZ6vBB6GKgpL3u2kC06Y7VZBwJdMUis8inOGFGZyU';
   const fakeToken2 =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTgwMjIwOTYsImlzcyI6ImRldmtleSIsIm5hbWUiOiJ1c2VyMiIsIm5iZiI6MTY5NzkzNTY5Niwic3ViIjoidXNlcjIiLCJ2aWRlbyI6eyJyb29tIjoiaGFwcHktZnJvZy1kYW5jZTIiLCJyb29tSm9pbiI6dHJ1ZX19.OFZPgiiGsaLn1eKKkd41y4kEU-5X2kpFDVOKWZq6xvs';
   let token;
-  if (context.email == 'liannanovitz@gmail.com') token = fakeToken1;
+  if (user.email == 'liannanovitz@gmail.com') token = fakeToken1;
   else token = fakeToken2;
 
   const wsUrl = 'ws://localhost:7880/';
@@ -46,7 +45,7 @@ export default function PhoneCall() {
   console.log('wsUrl ', wsUrl);
   return (
     <div>
-      <button onClick={() => setContext('Hellow, world')}>Mebutton</button>
+      <button onClick={() => console.log('button me')}>Mebutton</button>
     </div>
   );
   // return (

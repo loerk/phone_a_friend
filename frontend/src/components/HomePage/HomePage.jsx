@@ -2,12 +2,17 @@ import './HomePage.css';
 // import Account from '../../images/account.png'
 // import AddCall from '../../images/add_call.png'
 // import Calendar from '../../images/calendar.png'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // import FriendGroup from '../FriendGroup/FriendGroup'
-// import PhoneCall from '../PhoneCall/PhoneCall'
+import PhoneCall from '../PhoneCall/PhoneCall';
+import React, { useState } from 'react';
 // import Calendar from '../Calendar/Calendar'
 
 export default function HomePage() {
+  const [data] = useState({});
+  const { state } = useLocation();
+
+  console.log('data from homepage.js ', state);
   return (
     <>
       <div className="container">
@@ -24,9 +29,7 @@ export default function HomePage() {
             </Link>
           </div>
           <div>
-            <Link to="/phonecall">
-              <span className="homeIcon material-symbols-outlined">add_call</span>
-            </Link>
+            <PhoneCall userInfo={data}></PhoneCall>
           </div>
           <div>
             <Link to="/calendar">

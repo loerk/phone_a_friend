@@ -1,19 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { usePassageUserInfo } from '../../hooks';
-import { useNavigate } from 'react-router-dom'; //Routes, Route,
+import { useNavigate, useLocation } from 'react-router-dom'; //Routes, Route,
 import { RegistrationField } from './RegistrationField';
 import { fetchData } from '../../api/fetcher';
-import { MyContext } from '../../MyContext';
 //import HomePage from '../HomePage/HomePage';
 
 export const RegistrationForm = () => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState({});
+  const { state } = useLocation();
+
+  const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
   const [loadingData, setLoadingData] = useState(true);
 
-  const { context, setContext } = useContext(MyContext);
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
   const navigate = useNavigate();
@@ -31,7 +31,6 @@ export const RegistrationForm = () => {
         dob: response?.data?.dob
       };
       setData(userContext);
-      setContext(userContext);
       setLoadingData(false);
     };
 
@@ -57,8 +56,7 @@ export const RegistrationForm = () => {
           dob: response?.data?.dob
         };
         setData(userContext);
-        console.log('b4 setting context ', context);
-        setContext(userContext);
+        //console.log('b4 setting context ', context);
       } else {
         throw new Error('Registration Error');
       }
@@ -84,7 +82,11 @@ export const RegistrationForm = () => {
           }}
           onSubmit={(values) => {
             registerUser(values);
-            navigate('/homepage');
+            navigate('/homepage', {
+              state: {
+                'test data from registration': 'test'
+              }
+            });
           }}
         >
           <Form style={{ display: 'flex', flexDirection: 'column' }}>
