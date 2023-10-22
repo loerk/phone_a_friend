@@ -8,14 +8,14 @@ export default function SelectTime({ setTime }) {
         alignItems: 'center'
       }}
     >
-      <p style={{ fontSize: '2rem' }}>For the next:</p>
       <select
         style={{
           fontSize: '1.5rem',
           padding: '0.5rem',
           marginLeft: '1rem',
           border: '4px solid black',
-          outline: 'none'
+          outline: 'none',
+          background: 'transparent'
         }}
         onChange={(e) => setTime(e.target.value)}
       >

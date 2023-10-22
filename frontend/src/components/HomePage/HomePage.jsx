@@ -1,17 +1,71 @@
 import styles from './HomePage.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
+import SelectTime from '../Select/SelectTime';
+
+const buttonStyles = {
+  padding: '1.2rem',
+  margin: '1rem',
+  border: '1px solid black',
+  background: 'transparent',
+  borderRadius: '1rem',
+  display: 'flex',
+  flexDirection: 'column'
+};
+
+const containerStyles = {
+  display: 'flex'
+};
 
 export default function HomePage() {
   const [data] = useState({});
   const { state } = useLocation();
+  const [status, setStatus] = useState('available');
+  const [setTime] = useState(null);
+
   console.log(' from homepage.js state ', state);
   console.log(' from homepage.js data', data);
   return (
     <>
       <div className={styles.center}>
-        <span className={styles.largeIcon}>account_circle</span>
-
+        <div className={styles.subTitle}>
+          <h4>My status</h4> <SelectTime setTime={setTime} />
+        </div>
+        <div style={{ ...containerStyles }}>
+          <button
+            style={{
+              ...buttonStyles,
+              background: status === 'available' ? 'white' : 'transparent',
+              color: status === 'available' ? 'black' : 'white'
+            }}
+            onClick={() => setStatus('available')}
+          >
+            <span className={styles.largeIcon}>account_circle</span>
+            Available
+          </button>
+          <button
+            style={{
+              ...buttonStyles,
+              background: status === 'unavailable' ? 'white' : 'transparent',
+              color: status === 'unavailable' ? 'black' : 'white'
+            }}
+            onClick={() => setStatus('unavailable')}
+          >
+            <span className={styles.largeIcon}>block</span>
+            Unavailable
+          </button>
+          <button
+            style={{
+              ...buttonStyles,
+              background: status === 'moody' ? 'white' : 'transparent',
+              color: status === 'moody' ? 'black' : 'white'
+            }}
+            onClick={() => setStatus('moody')}
+          >
+            <span className={styles.largeIcon}>sentiment_sad</span>
+            Need a call
+          </button>
+        </div>
         <div className={styles.mainTitle}>
           <h1>Phone A Friend</h1>
         </div>
