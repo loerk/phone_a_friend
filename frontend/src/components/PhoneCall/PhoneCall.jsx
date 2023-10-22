@@ -1,5 +1,7 @@
 import '../HomePage/HomePage.css';
-const { LiveKitRoom } = require('@livekit/components-react');
+import { MyContext } from '../../MyContext';
+import { useContext } from 'react';
+//const { LiveKitRoom } = require('@livekit/components-react');
 //import { fetchData } from '../../api/fetcher';
 
 // import
@@ -29,7 +31,8 @@ export default function PhoneCall({ user }) {
   //console.log('makeCall fake call ', makeCall);
   //const user = '123';
   //const friend = '456';
-
+  const { context, setContext } = useContext(MyContext);
+  console.log('Text from context ', context);
   const fakeToken1 =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTgwMjIwNzIsImlzcyI6ImRldmtleSIsIm5hbWUiOiJ1c2VyMSIsIm5iZiI6MTY5NzkzNTY3Miwic3ViIjoidXNlcjEiLCJ2aWRlbyI6eyJyb29tIjoiaGFwcHktZnJvZy1kYW5jZTIiLCJyb29tSm9pbiI6dHJ1ZX19.HnzZ6vBB6GKgpL3u2kC06Y7VZBwJdMUis8inOGFGZyU';
   const fakeToken2 =
@@ -42,10 +45,18 @@ export default function PhoneCall({ user }) {
 
   console.log('wsUrl ', wsUrl);
   return (
-    // livekit component
     <div>
-      <h1 className="maintitle">Calling...</h1>
-      <LiveKitRoom audio={true} video={false} token={token} serverUrl={wsUrl}></LiveKitRoom>
+      <button onClick={() => setContext('Hellow, world')}>Mebutton</button>
     </div>
   );
+  // return (
+  //   // livekit component
+  //   <div>
+  //     <MyContext.Provider value={{ text, setText }}>
+  //       <h1 className="maintitle">Calling...</h1>
+  //       <button onClick={() => setText('Hellow, world')}></button>
+  //       <LiveKitRoom audio={true} video={false} token={token} serverUrl={wsUrl}></LiveKitRoom>
+  //     </MyContext.Provider>
+  //   </div>
+  // );
 }

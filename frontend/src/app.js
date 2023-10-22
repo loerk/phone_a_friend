@@ -1,6 +1,7 @@
-import React from 'react';
+import { useState, React } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PassageProvider } from '@passageidentity/passage-react';
+import { MyContext } from './MyContext';
 
 import Home from './views/Home';
 import Dashboard from './views/Dashboard';
@@ -18,27 +19,31 @@ import CalendarEdit from './components/CalendarEdit/CalendarEdit';
 import CalendarAdd from './components/CalendarAdd/CalendarAdd';
 
 function App() {
+  const [context, setContext] = useState('');
+
   return (
     <PassageProvider appId={process.env.REACT_APP_PASSAGE_APP_ID}>
-      <div>
-        <Banner />
-        <div className={styles.mainContainer}>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/dashboard" element={<Dashboard />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
-            <Route path="/homepage" element={<HomePage />}></Route>
-            <Route path="/friendgroup" element={<FriendGroup />}></Route>
-            <Route path="/phonecall" element={<PhoneCall />}></Route>
-            <Route path="/calendar" element={<Calendar />}></Route>
-            <Route path="/edit" element={<Edit />}></Route>
-            <Route path="/search" element={<Search />}></Route>
-            <Route path="/result" element={<Result />}></Route>
-            <Route path="/calendaredit" element={<CalendarEdit />}></Route>
-            <Route path="/calendaradd" element={<CalendarAdd />}></Route>
-          </Routes>
+      <MyContext.Provider value={{ context, setContext }}>
+        <div>
+          <Banner />
+          <div className={styles.mainContainer}>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/dashboard" element={<Dashboard />}></Route>
+              <Route path="/profile" element={<Profile />}></Route>
+              <Route path="/homepage" element={<HomePage />}></Route>
+              <Route path="/friendgroup" element={<FriendGroup />}></Route>
+              <Route path="/phonecall" element={<PhoneCall />}></Route>
+              <Route path="/calendar" element={<Calendar />}></Route>
+              <Route path="/edit" element={<Edit />}></Route>
+              <Route path="/search" element={<Search />}></Route>
+              <Route path="/result" element={<Result />}></Route>
+              <Route path="/calendaredit" element={<CalendarEdit />}></Route>
+              <Route path="/calendaradd" element={<CalendarAdd />}></Route>
+            </Routes>
+          </div>
         </div>
-      </div>
+      </MyContext.Provider>
     </PassageProvider>
   );
 }
