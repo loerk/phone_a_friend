@@ -71,7 +71,7 @@ export default function PhoneCall() {
         eat]. Thanks so much for talking to me, this was really nice.
       </ul>
 
-      <button className="maintitle">Send a virtual hug and hang up {token}</button>
+      <button className="maintitle">Send a virtual hug and hang up</button>
       <LiveKitRoom
         data-lk-theme="default"
         audio={true}
