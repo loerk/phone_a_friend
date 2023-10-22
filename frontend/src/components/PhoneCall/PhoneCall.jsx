@@ -1,5 +1,5 @@
 import '../HomePage/HomePage.css';
-const { LiveKitRoom } = require('@livekit/components-react');
+const { LiveKitRoom, ControlBar } = require('@livekit/components-react');
 import { fetchData } from '../../api/fetcher';
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -56,7 +56,9 @@ export default function PhoneCall() {
     // livekit component
     <div>
       <h1 className="maintitle">Calling...</h1>
-      <LiveKitRoom audio={true} video={false} token={token} serverUrl={wsUrl}></LiveKitRoom>
+      <LiveKitRoom audio={true} video={false} token={token} serverUrl={wsUrl}>
+        <ControlBar />
+      </LiveKitRoom>
     </div>
   );
 }
