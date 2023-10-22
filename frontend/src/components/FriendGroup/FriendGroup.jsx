@@ -30,7 +30,7 @@ export default function FriendGroup() {
         </div>
         <div className={styles.friendContainer}>
           <div>
-            <span className={styles.smallIcon}>account_circle</span>
+            <span className={styles.smallIcon}>sentiment_sad</span>
           </div>
           <div className={styles.nameContainer}>
             <div>Gabriel Cadault</div>

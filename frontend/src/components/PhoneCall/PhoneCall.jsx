@@ -27,32 +27,21 @@ const makeCall = async (userId) => {
 export default function PhoneCall() {
   const [token, setToken] = useState('');
   const { state } = useLocation();
-  console.log('state ', state);
-  console.log('token before useEffect', token);
-  //console.log('userInfo from homepage passed to PhoneCall ', userInfo);
   const userId = state?.userInfo?._id;
   useEffect(() => {
     // React advises to declare the async function directly inside useEffect
     async function getToken() {
       const token = await makeCall(userId);
-      console.log('token after await makecall ', token);
       setToken(token);
-      console.log('token after setToken useEffect', token);
     }
 
-    // You need to restrict it at some point
-    // This is just dummy code and should be replaced by actual
     if (!token) {
       getToken();
     }
   }, []);
 
-  // const token =
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2aWRlbyI6eyJyb29tSm9pbiI6dHJ1ZSwicm9vbSI6ImhhcHB5LWZyb2ctZGFuY2UyIn0sImlhdCI6MTY5Nzk1MDIyMiwibmJmIjoxNjk3OTUwMjIyLCJleHAiOjE2OTc5NzE4MjIsImlzcyI6ImRldmtleSIsInN1YiI6InVuZGVmaW5lZCIsImp0aSI6InVuZGVmaW5lZCJ9.4z1ry0jmc-TkbLKILOLiC9HvkET8YSgxhOHC-Zv_HKk';
-  const wsUrl = 'ws://localhost:7880/';
+  const livekitHost = process.env.LIVEKIT_HOST;
 
-  console.log('token', token);
-  console.log('wsUrl ', wsUrl);
   const friend = 'Mom';
   return (
     // livekit component
@@ -77,7 +66,7 @@ export default function PhoneCall() {
         audio={true}
         video={false}
         token={token}
-        serverUrl={wsUrl}
+        serverUrl={livekitHost}
       >
         <ControlBar variation="verbose" />
       </LiveKitRoom>
