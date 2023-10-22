@@ -40,7 +40,7 @@ export default function PhoneCall() {
     }
   }, []);
 
-  const livekitHost = process.env.LIVEKIT_HOST;
+  const livekitHost = process.env.REACT_APP_LIVEKIT_HOST;
 
   const friend = 'Mom';
   return (

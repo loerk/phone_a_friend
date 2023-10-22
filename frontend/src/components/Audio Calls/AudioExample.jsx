@@ -14,7 +14,7 @@ export const AudioExample = () => {
         video={false}
         audio={true}
         token={token}
-        serverUrl={process.env.NEXT_PUBLIC_LK_SERVER_URL}
+        serverUrl={process.env.REACT_APP_LIVEKIT_HOST}
       >
         <AudioConference />
       </LiveKitRoom>
