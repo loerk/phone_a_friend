@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { usePassageUserInfo } from '../../hooks';
-import { useNavigate } from 'react-router-dom'; //Routes, Route,
+import { useNavigate, useLocation } from 'react-router-dom'; //Routes, Route,
 import { RegistrationField } from './RegistrationField';
 import { fetchData } from '../../api/fetcher';
 //import HomePage from '../HomePage/HomePage';
 
 export const RegistrationForm = () => {
   const [data, setData] = useState(null);
+  const { state } = useLocation();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [loadingData, setLoadingData] = useState(true);
@@ -77,7 +78,9 @@ export const RegistrationForm = () => {
           }}
           onSubmit={(values) => {
             registerUser(values);
-            navigate('/homepage');
+            navigate('/homepage', {
+              state: { 'test from register': 'test' }
+            });
           }}
         >
           <Form style={{ display: 'flex', flexDirection: 'column' }}>
