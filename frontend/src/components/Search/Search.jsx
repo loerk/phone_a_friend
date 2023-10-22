@@ -1,4 +1,4 @@
-import '../HomePage/HomePage.css'
+import styles from './Search.module.css'
 import { Link } from 'react-router-dom'
 import Result from '../Result/Result'
 
@@ -6,31 +6,31 @@ export default function Search() {
 
   return (
     <>
-      <div>
+      <div className={styles.center}>
         <div>
-          <h1 className='maintitle'>Search</h1>
+          <h1 className={styles.mainTitle}>Search</h1>
         </div>
-        <div className='frEditContainer'>
+        <div className={styles.container}>
           
-          <div className='editBtnContainer'>
+          <div className={styles.right}>
             <Link to="/result">
-            <span className="friendIcon material-symbols-outlined">
+            <span className={styles.smallIcon}>
               search
             </span>
             </Link>
           </div>
           <div>
-            <div className='editNameContainer'>
-              <div className='title'>Name: </div>
-              <div className='entry'></div>
+            <div className={styles.nameContainer}>
+              <div className={styles.title}>Name: </div>
+              <div className={styles.entry}></div>
             </div>
             <div className='editNameContainer'>
-              <div className='title'>Email: </div>
-              <div className='entry'>emily@email.com</div>
+              <div className={styles.title}>Email: </div>
+              <div className={styles.entry}>emily@email.com</div>
             </div>
             <div className='editNameContainer'>
-              <div className='title'>Phone: </div>
-              <div className='entry'></div>
+              <div className={styles.title}>Phone: </div>
+              <div className={styles.entry}></div>
             </div>
           </div>
         </div>       

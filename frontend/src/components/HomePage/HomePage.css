@@ -1,15 +1,4 @@
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
 
-body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(184, 156, 156);
-}
 
 .container {
   margin: auto;
@@ -84,19 +73,25 @@ body {
   text-shadow: 3px 3px 5px gray;
 }
 
+
+
+/*----- HomePage -----*/
+
+.accountIcon {
+  font-size: 120px;
+  margin: 20px 0 10px 0px;
+  color: rgb(34, 128, 139);
+  text-shadow: 3px 3px 5px gray;
+  
+}
+
+
 .maintitle {
   font-family: 'Luckiest Guy', cursive;
   font-size: 40px;
   padding: 20px;
   color: rgb(61, 61, 61);
   letter-spacing: 3px;
-  text-shadow: 3px 3px 5px gray;
-}
-
-.accountIcon {
-  font-size: 120px;
-  margin: 20px 0 10px 0;
-  color: rgb(34, 128, 139);
   text-shadow: 3px 3px 5px gray;
 }
 

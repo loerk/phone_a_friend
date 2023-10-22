@@ -1,0 +1,67 @@
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainTitle {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 40px;
+  padding: 20px;
+  color: rgb(61, 61, 61);
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 5px gray;
+}
+
+.right {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 700px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.medLink {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 60px;
+  margin: 10px 50px;
+  color: rgb(61, 61, 61);
+  text-shadow: 3px 3px 5px gray;
+}
+
+.smallIcon {
+  font-size: 40px;
+  margin: 10px 10px;
+  color: rgb(61, 61, 61);
+  text-shadow: 3px 3px 5px gray;
+  font-family: 'Material Symbols Outlined'
+}
+
+.timeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+}
+
+.day {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 20px;
+  width: 100px;
+  padding: 20px;
+  color: rgb(61, 61, 61);
+}
+
+.time {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 40px;
+  width: 200px;
+  padding: 20px;
+  color: rgb(61, 61, 61);
+}
+

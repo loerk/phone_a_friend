@@ -1,4 +1,4 @@
-import '../HomePage/HomePage.css'
+import styles from './CalendarEdit.module.css'
 import { Link } from 'react-router-dom'
 import Calendar from '../Calendar/Calendar'
 import CalendarAdd from '../CalendarAdd/CalendarAdd'
@@ -7,49 +7,49 @@ export default function CalendarEdit() {
 
   return (
     <>
-      <div>
+      <div className={styles.center}>
         <div>
-          <h1 className='maintitle'>Edit Availability</h1>
+          <h1 className={styles.mainTitle}>Edit Availability</h1>
         </div>
-        <div className='editContainer' style={{ position: 'relative', left: '300px' }}>
-          <Link to="/calendar" style={{ textDecoration: 'none' }}>
-            <h1 className='editIcon'>Done</h1> 
+        <div className={styles.right}>
+          <Link to="/calendar" className={styles.link}>
+            <h1 className={styles.medLink}>Done</h1> 
           </Link>       
         </div>
         <br />
         <br />
-        <div className='iconContainer'>
+        <div className={styles.timeContainer}>
           <div>
             <Link to='/calendaradd'>
-              <span className="homeIcon material-symbols-outlined">
+              <span className={styles.smallIcon}>
                 edit
               </span>
             </Link>
           </div>
           <div>
-            <div className='day'>Monday</div>
+            <div className={styles.day}>Monday</div>
           </div>
-          <div className='iconContainer'>
-            <div className='time'>7:00<span className='day'>AM</span></div>
-            <div className='day'>to</div>
-            <div className='time'>9:00<span className='day'>AM</span></div>
+          <div className={styles.timeContainer}>
+            <div className={styles.time}>7:00<span className={styles.day}>AM</span></div>
+            <div className={styles.day}>to</div>
+            <div className={styles.time}>9:00<span className={styles.day}>AM</span></div>
           </div>
         </div>
-        <div className='iconContainer'>
+        <div className={styles.timeContainer}>
           <div>
             <Link to='/calendaradd'>
-              <span className="homeIcon material-symbols-outlined">
+              <span className={styles.smallIcon}>
                 edit
               </span>
             </Link>
           </div>
           <div>
-            <div className='day'>Tuesday</div>
+            <div className={styles.day}>Tuesday</div>
           </div>
-          <div className='iconContainer'>
-            <div className='time'>8:00<span className='day'>PM</span></div>
-            <div className='day'>to</div>
-            <div className='time'>10:00<span className='day'>PM</span></div>
+          <div className={styles.timeContainer}>
+            <div className={styles.time}>8:00<span className={styles.day}>PM</span></div>
+            <div className={styles.day}>to</div>
+            <div className={styles.time}>10:00<span className={styles.day}>PM</span></div>
           </div>
           
         </div>        

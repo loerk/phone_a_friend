@@ -1,0 +1,40 @@
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.largeIcon {
+  font-size: 120px;
+  margin: 20px 0 10px 0px;
+  color: rgb(34, 128, 139);
+  text-shadow: 3px 3px 5px gray;
+  font-family: 'Material Symbols Outlined'
+}
+
+.medIcon {
+  font-size: 80px;
+  margin: 10px 50px;
+  color: rgb(61, 61, 61);
+  text-shadow: 3px 3px 5px gray;
+  font-family: 'Material Symbols Outlined'
+}
+
+.mainTitle {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 40px;
+  padding: 20px;
+  color: rgb(61, 61, 61);
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 5px gray;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+

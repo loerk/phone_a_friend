@@ -1,0 +1,134 @@
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainTitle {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 40px;
+  padding: 20px;
+  color: rgb(61, 61, 61);
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 5px gray;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 700px;
+}
+
+.timeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.medLink {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 60px;
+  margin: 10px 50px;
+  color: rgb(61, 61, 61);
+  text-shadow: 3px 3px 5px gray;
+}
+
+.medIcon { 
+  font-size: 80px;
+  margin: 10px 50px;
+  color: rgb(61, 61, 61);
+  text-shadow: 3px 3px 5px gray;
+  font-family: 'Material Symbols Outlined';
+}
+
+.day {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 20px;
+  width: 100px;
+  padding: 20px;
+  color: rgb(61, 61, 61);
+}
+.to {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 20px;
+  padding: 20px;
+  color: rgb(61, 61, 61);
+}
+
+.time {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 40px;
+  width: 200px;
+  padding: 20px;
+  color: rgb(61, 61, 61);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+input:checked + .slider {
+  background-color: forestgreen;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px forestgreen;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
