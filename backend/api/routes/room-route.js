@@ -3,20 +3,18 @@ const util = require('util');
 const router = express.Router();
 const { AccessToken, RoomServiceClient } = require('livekit-server-sdk');
 
+require('dotenv').config();
+
 const livekitHost = process.env.LIVEKIT_HOST;
 const livekitApiKey =  process.env.LIVEKIT_API_KEY;
 const livekitApiSecret = process.env.LIVEKIT_API_SECRET;
-
-// roomService.listRooms().then((rooms) => {
-//   console.log('existing rooms', rooms);
-// });
 
 router.route('/').post(async (req, res) => {
   // main endpoint to make room
   console.log('room post');
 
   //console.log('req ', req);
-  const roomService = new RoomServiceClient(livekitHost, livekitApiKey, newLocal);
+  const roomService = new RoomServiceClient(livekitHost, livekitApiKey, livekitApiSecret);
 
   const opts = {
     name: 'happy-frog-dance2', //'room-' + userId,
