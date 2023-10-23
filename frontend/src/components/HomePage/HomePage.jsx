@@ -1,7 +1,6 @@
 import styles from './HomePage.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
-import SelectTime from '../Select/SelectTime';
 
 const buttonStyles = {
   padding: '1.2rem',
@@ -22,15 +21,15 @@ export default function HomePage() {
   const [data] = useState({});
   const { state } = useLocation();
   const [status, setStatus] = useState('available');
-  const [setTime] = useState(null);
 
   console.log(' from homepage.js state ', state);
   console.log(' from homepage.js data', data);
   return (
     <>
       <div className={styles.center}>
+        <div className={styles.subTitle}></div>
         <div className={styles.subTitle}>
-          <h4>My status</h4> <SelectTime setTime={setTime} />
+          <h4>Select a status</h4>
         </div>
         <div style={{ ...containerStyles }}>
           <button
