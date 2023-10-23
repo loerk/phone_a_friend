@@ -14,7 +14,6 @@ export const RegistrationForm = () => {
   const { userInfo: passageUserInfo } = usePassageUserInfo();
 
   const navigate = useNavigate();
-  // const userIsAlreadyRegistered = fetchData(`/user/${passageUserInfo?.id}`);
 
   useEffect(() => {
     const getUserData = async (email) => {
@@ -53,9 +52,7 @@ export const RegistrationForm = () => {
     setLoading(true);
     try {
       const response = await fetchData('/api/users', 'POST', injectedUserData);
-      console.log('result', response);
       if (typeof result !== 'string') {
-        console.log({ response });
         setData({
           userName: response?.data?.username,
           phoneNumber: response?.data?.phoneNumber,
@@ -79,10 +76,10 @@ export const RegistrationForm = () => {
       ) : (
         <Formik
           initialValues={{
-            username: data.userName || '',
-            phoneNumber: data.phoneNumber || '',
-            email: data.email || '',
-            dob: data.dob || '',
+            username: data?.userName || '',
+            phoneNumber: data?.phoneNumber || '',
+            email: data?.email || '',
+            dob: data?.dob || '',
             id: ''
           }}
           onSubmit={(values) => {
