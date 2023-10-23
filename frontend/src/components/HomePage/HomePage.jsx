@@ -78,7 +78,7 @@ export default function HomePage() {
             </Link>
           </div>
           <div>
-            <Link to="/phonecall" state={{ userInfo: state.response.data }}>
+            <Link to="/phonecall" state={{ userInfo: state }}>
               <span className={styles.medIcon}>add_call</span>
             </Link>
           </div>

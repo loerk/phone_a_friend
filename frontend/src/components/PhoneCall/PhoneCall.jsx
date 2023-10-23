@@ -2,8 +2,10 @@ import '../HomePage/HomePage.css';
 import '@livekit/components-styles';
 const { LiveKitRoom, ControlBar } = require('@livekit/components-react');
 import { fetchData } from '../../api/fetcher';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import { usePassageUserInfo } from '../../hooks';
+
 // import
 
 const makeCall = async (userId) => {
@@ -27,11 +29,17 @@ const makeCall = async (userId) => {
 export default function PhoneCall() {
   const [token, setToken] = useState('');
   const { state } = useLocation();
-  const userId = state?.userInfo?._id;
+  const userId = state?.userInfo?.email;
+  const { userInfo: passageUserInfo } = usePassageUserInfo();
+  const navigate = useNavigate();
   useEffect(() => {
     // React advises to declare the async function directly inside useEffect
     async function getToken() {
-      const token = await makeCall(userId);
+      if ((userId === '') | (userId === undefined)) {
+        console.log('no user id');
+        navigate('/dashboard');
+      }
+      const token = await makeCall(userId ? userId : 'lianna');
       setToken(token);
     }
 
@@ -40,7 +48,7 @@ export default function PhoneCall() {
     }
   }, []);
 
-  const livekitHost = process.env.LIVEKIT_HOST;
+  const livekitHost = process.env.REACT_APP_LIVEKIT_HOST;
 
   const friend = 'Mom';
   return (
@@ -48,28 +56,34 @@ export default function PhoneCall() {
     //TrackPublication
     // Track.Source.Microphone
     <div>
-      <h1>
-        You're on the phone with <i>{friend}</i>!
-      </h1>
-      <h2>
-        Your schedule shows you have <span style={{ color: 'red' }}>5</span> more minutes to chat.
-      </h2>
-      <h3>Need help hanging up?</h3>
-      <ul>
-        <i>{friend}</i> - it's been so good talking to you. I have to go soon to [study / work /
-        eat]. Thanks so much for talking to me, this was really nice.
-      </ul>
+      <h1>Calling...</h1>
+      {passageUserInfo && (
+        <div>
+          <h1>
+            You're on the phone with <i>{friend}</i>!
+          </h1>
+          <h2>
+            Your schedule shows you have <span style={{ color: 'red' }}>5</span> more minutes to
+            chat.
+          </h2>
+          <h3>Need help hanging up?</h3>
+          <ul>
+            <i>{friend}</i> - it's been so good talking to you. I have to go soon to [study / work /
+            eat]. Thanks so much for talking to me, this was really nice.
+          </ul>
 
-      <button className="maintitle">Send a virtual hug and hang up</button>
-      <LiveKitRoom
-        data-lk-theme="default"
-        audio={true}
-        video={false}
-        token={token}
-        serverUrl={livekitHost}
-      >
-        <ControlBar variation="verbose" />
-      </LiveKitRoom>
+          <button className="maintitle">Send a virtual hug and hang up </button>
+          <LiveKitRoom
+            data-lk-theme="default"
+            audio={true}
+            video={false}
+            token={token}
+            serverUrl={livekitHost}
+          >
+            <ControlBar variation="verbose" />
+          </LiveKitRoom>
+        </div>
+      )}
     </div>
   );
 }
