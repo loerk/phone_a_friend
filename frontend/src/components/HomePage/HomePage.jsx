@@ -1,6 +1,7 @@
 import styles from './HomePage.module.css';
 import { Link, useLocation } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetchData } from '../../api/fetcher';
 
 const buttonStyles = {
   padding: '1.2rem',
@@ -18,12 +19,19 @@ const containerStyles = {
 };
 
 export default function HomePage() {
-  const [data] = useState({});
   const { state } = useLocation();
-  const [status, setStatus] = useState('available');
 
-  console.log(' from homepage.js state ', state);
-  console.log(' from homepage.js data', data);
+  const [status, setStatus] = useState('available');
+  useEffect(() => {
+    const saveStatus = async () => {
+      try {
+        fetchData(`/api/users/${state._id}/status`, 'POST', { status });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    saveStatus();
+  }, [status]);
   return (
     <>
       <div className={styles.center}>
