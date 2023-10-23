@@ -39,7 +39,7 @@ export default function PhoneCall() {
         console.log('no user id');
         navigate('/dashboard');
       }
-      const token = await makeCall(userId ? userId : 'lianna');
+      const token = await makeCall(userId);
       setToken(token);
     }
 
