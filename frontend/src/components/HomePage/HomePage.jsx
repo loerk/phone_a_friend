@@ -23,7 +23,7 @@ export default function HomePage() {
   const { state } = useLocation();
 
   const [status, setStatus] = useState('available');
-  const [totalSeconds, setTotalSeconds] = useState(60);
+  const [totalSeconds, setTotalSeconds] = useState(15 * 60);
 
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
