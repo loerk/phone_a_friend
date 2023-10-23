@@ -1,6 +1,15 @@
 import '../HomePage/HomePage.css';
 import '@livekit/components-styles';
-const { LiveKitRoom, ControlBar } = require('@livekit/components-react');
+import { Track } from 'livekit-client';
+
+const {
+  LiveKitRoom,
+  ControlBar,
+  useTracks,
+  GridLayout,
+  ParticipantTile,
+  RoomAudioRenderer
+} = require('@livekit/components-react');
 import { fetchData } from '../../api/fetcher';
 import { useLocation, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -80,10 +89,36 @@ export default function PhoneCall() {
             token={token}
             serverUrl={livekitHost}
           >
+            {/* Your custom component with basic video conferencing functionality. */}
+            <MyVideoConference />
+            {/* The RoomAudioRenderer takes care of room-wide audio for you. */}
+            <RoomAudioRenderer />
+            {/* Controls for the user to start/stop audio, video, and screen 
+          share tracks and to leave the room. */}
             <ControlBar variation="verbose" />
           </LiveKitRoom>
         </div>
       )}
     </div>
+  );
+}
+
+function MyVideoConference() {
+  // `useTracks` returns all camera and screen share tracks. If a user
+  // joins without a published camera track, a placeholder track is returned.
+  const tracks = useTracks(
+    [
+      // { source: Track.Source.Camera, withPlaceholder: true },
+      // { source: Track.Source.ScreenShare, withPlaceholder: false },
+      { source: Track.Source.Microphone, withPlaceholder: false }
+    ],
+    { onlySubscribed: false }
+  );
+  return (
+    <GridLayout tracks={tracks} style={{ height: 'calc(50vh - var(--lk-control-bar-height))' }}>
+      {/* The GridLayout accepts zero or one child. The child is used
+      as a template to render all passed in tracks. */}
+      <ParticipantTile />
+    </GridLayout>
   );
 }
