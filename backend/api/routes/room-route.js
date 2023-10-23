@@ -5,8 +5,8 @@ const { AccessToken, RoomServiceClient } = require('livekit-server-sdk');
 
 require('dotenv').config();
 
-const livekitHost = process.env.LIVEKIT_HOST;
-const livekitApiKey =  process.env.LIVEKIT_API_KEY;
+const livekitHost = process.env.REACT_APP_LIVEKIT_HOST;
+const livekitApiKey = process.env.LIVEKIT_API_KEY;
 const livekitApiSecret = process.env.LIVEKIT_API_SECRET;
 
 router.route('/').post(async (req, res) => {

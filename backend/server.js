@@ -5,20 +5,16 @@ const users = require('./api/routes/users-route');
 const room = require('./api/routes/room-route');
 const app = express();
 
-
-
 require('dotenv').config();
 
 app.use(express.json());
 app.use(cors());
-
 
 const passage = new Passage({
   appID: process.env.PASSAGE_APP_ID,
   apiKey: process.env.PASSAGE_API_KEY,
   authStrategy: 'HEADER'
 });
-
 
 app.use('/api/users', users);
 app.use('/api/room', room);
